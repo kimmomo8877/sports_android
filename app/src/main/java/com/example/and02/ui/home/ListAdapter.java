@@ -1,6 +1,7 @@
 package com.example.and02.ui.home;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +19,11 @@ import com.ornach.nobobutton.NoboButton;
 
 import java.util.List;
 
+import static android.graphics.Color.BLUE;
+
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder> {
+
+    private Button button_item;
 
     public interface OnItemClickListener {
         void onItemClick(View v, int position) ;
@@ -44,8 +49,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
             super(itemView);
             this.button_menu = itemView.findViewById(R.id.button_menu);
 
-
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -54,6 +57,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
                         // 리스너 객체의 메서드 호출.
                         if (mListener != null) {
                             mListener.onItemClick(v, pos) ;
+//                            button_menu.setBackgroundColor(Color.BLACK);
                             Log.i("ListAdapter Click Event", String.valueOf(pos));
                         }
                     }
@@ -90,9 +94,32 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
     public void onBindViewHolder(@NonNull ListViewHolder holder, final int position) {
 
         holder.getButton_menu().setText(listModelList.get(position).getMenu());
+        int menuLength = listModelList.get(position).getMenu().length();
+        ViewGroup.LayoutParams params = holder.button_menu.getLayoutParams();
+        params.width = menuLength * 60;
+        holder.button_menu.setLayoutParams(params);
+//        holder.button_menu.setBackgroundColor(Color.BLACK);
 
-        final ListModel item = listModelList.get(position);
 
+//        int menuLength = listModelList.get(position).getMenu().length();
+//        this.button_item = holder.itemView.findViewById(R.id.button_menu);
+//
+//        button_item.setWidth(menuLength * 20);
+//        Log.i("menuLength", String.valueOf(menuLength));
+
+
+
+
+//        final ListModel item = listModelList.get(position);
+//
+//
+//        int pos1 = getAdapterPosition() ;
+//        Log.i("menu pos1", String.valueOf(pos1));
+//        if (pos1 != RecyclerView.NO_POSITION) {
+//            int menuLength = listModelList.get(pos1).getMenu().length();
+//            Log.i("menuLength", String.valueOf(menuLength));
+//            button_menu.setWidth(menuLength * 20);
+//        }
 
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override

@@ -13,29 +13,45 @@
             tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_tracker"
-            app:destination="@id/navigation_dashboard" />
+            app:destination="@id/navigation_sport" />
         <action
             android:id="@+id/action_home_to_facilityDetail"
             app:destination="@id/facilityDetailFragment" />
-        <argument
-            android:name="infraNo"
-            app:argType="string"
-            android:defaultValue="null"/>
+
     </fragment>
-
-    <fragment
-            android:id="@+id/navigation_dashboard"
-            android:name="com.example.and02.ui.dashboard.DashboardFragment"
-            android:label="@string/title_dashboard"
-            tools:layout="@layout/fragment_dashboard"/>
-
-    <fragment
-            android:id="@+id/navigation_notifications"
-            android:name="com.example.and02.ui.notifications.NotificationsFragment"
-            android:label="@string/title_notifications"
-            tools:layout="@layout/fragment_notifications"/>
     <fragment
         android:id="@+id/facilityDetailFragment"
         android:name="com.example.and02.ui.home.FacilityDetailFragment"
         android:label="FacilityDetailFragment" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.and02.ui.dashboard.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/navigation_sport"
+        android:name="com.example.and02.ui.sport.SportFragment"
+        android:label="fragment_sport"
+        tools:layout="@layout/fragment_sport" />
+    <fragment
+        android:id="@+id/navigation_team"
+        android:name="com.example.and02.ui.team.TeamFragment"
+        android:label="fragment_team"
+        tools:layout="@layout/fragment_team" >
+        <action
+            android:id="@+id/action_navigation_team_to_facilityDetailFragment"
+            app:destination="@id/facilityDetailFragment" />
+        <action
+            android:id="@+id/action_navigation_team_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_touring"
+        android:name="com.example.and02.ui.touring.TouringFragment"
+        android:label="fragment_touring"
+        tools:layout="@layout/fragment_touring" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.and02.ui.team.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>

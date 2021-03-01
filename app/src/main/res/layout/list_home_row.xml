@@ -1,48 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="70dp"
+    android:layout_width="wrap_content"
     android:layout_height="40dp"
-    android:paddingLeft="10dp">
+    android:layout_marginLeft="10dp"
+    android:layout_marginBottom="5dp"
+    android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="60dp"
+    <Button
+        android:id="@+id/button_menu"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
-        app:cardCornerRadius="8dp"
-        >
-
-        <LinearLayout
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:orientation="vertical"
-            >
-
-            <Button
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:id="@+id/button_menu"
-            android:text=""
-            android:background="@drawable/button_selection"
-            android:focusableInTouchMode="true"
-            android:textSize="15sp"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"/>
-
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        android:focusable="true"
+        android:clickable="false"
+        android:focusableInTouchMode="true"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:text=""
+        android:textSize="15sp"
+        android:background="@drawable/button_selection"
+        />
 
 </LinearLayout>
-<!--<Button-->
-<!--android:layout_width="60dp"-->
-<!--android:layout_height="40dp"-->
-<!--android:id="@+id/button_menu"-->
-<!--android:text="Button Example"-->
-<!--android:background="@drawable/button_selection"-->
-<!--android:focusableInTouchMode="true"-->
-<!--android:textSize="15sp"-->
-<!--android:paddingLeft="2dp"-->
-<!--android:paddingRight="2dp"/>-->
-<!--    android:background="@drawable/button_selection"-->
+
+    <!--<Button-->
+
+    <!--    android:clickable="false"-->
+    <!--        android:focusable="false"-->
+    <!--android:layout_width="60dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:id="@+id/button_menu"-->
+    <!--android:text="Button Example"-->
+    <!--android:background="@drawable/button_selection"-->
+    <!--android:focusableInTouchMode="true"-->
+    <!--android:textSize="15sp"-->
+    <!--android:paddingLeft="2dp"-->
+    <!--android:paddingRight="2dp"/>-->
+    <!--    android:background="@drawable/button_selection"-->
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/card_view"-->
+    <!--        android:layout_width="60dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        app:cardCornerRadius="8dp"-->
+    <!--        >-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="60dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:orientation="vertical"-->
+    <!--            >-->
+
+    <!--        </LinearLayout>-->
+    <!--    </androidx.cardview.widget.CardView>-->

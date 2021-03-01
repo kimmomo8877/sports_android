@@ -1,0 +1,152 @@
+package com.example.and02.ui.team;
+
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.and02.MainActivity;
+import com.example.and02.R;
+import com.example.and02.ui.common.ListModel;
+import com.example.and02.ui.home.InfraCategoryModel;
+import com.example.and02.ui.home.InfraModel;
+import com.example.and02.ui.home.ListAdapter;
+import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SearchFragment  extends Fragment {
+
+    private RecyclerView favoriteRecyclerView;
+    private RequestQueue requestQueue;
+
+    private FavoriteAdapter favoriteAdapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.i("onCreated", "inside on activity created");
+        // Here notify the fragment that it should participate in options menu handling.
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Inflate the menu; this adds items to the action bar.
+        menu.clear();
+        inflater.inflate(R.menu.home_nav_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle item selection
+        Log.i("onOptionsItemSelected","yes");
+        switch (item.getItemId()) {
+            case R.id.home_tracker_button:
+                Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.button_tracker_action:
+                Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
+
+        requestQueue = Volley.newRequestQueue(view.getContext());
+
+        favoriteRecyclerView = view.findViewById(R.id.recycler_fragment_search);
+        favoriteRecyclerView.setHasFixedSize(true);
+        favoriteRecyclerView.setLayoutManager(mLayoutManager);
+        doHttpRequestSearch();
+
+        return view;
+    }
+
+    private void doHttpRequestSearch() {
+
+        String url = "http://www.kbostat.co.kr/resource/search/word/most-favorites";
+        StringRequest request = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                if (response != null)
+                {
+                    try {
+                        response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                }
+                List<FavoriteModel> result = new ArrayList<>();
+                try {
+                    JSONArray root = new JSONArray(response);
+                    for (int i = 0; i < root.length(); i++) {
+                        JSONObject data = root.getJSONObject(i);
+
+                        FavoriteModel model = new FavoriteModel();
+                        model.setSearcherNo(data.getString("searcherNo"));
+                        model.setSearchWord(data.optString("searchWord"," "));
+                        result.add(model);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                favoriteAdapter = new FavoriteAdapter(result);
+                List<FavoriteModel> result_orig = new ArrayList<>();
+                result_orig.addAll(result);
+                favoriteAdapter.setFavoriteModelList_orig(result_orig);
+                favoriteRecyclerView.setAdapter(favoriteAdapter);
+                Log.i("TEST", response);
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error", String.valueOf(error));
+            }
+        });
+
+        requestQueue.add(request);
+    }
+
+
+}

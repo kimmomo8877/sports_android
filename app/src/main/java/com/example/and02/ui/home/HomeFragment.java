@@ -170,8 +170,6 @@ public class HomeFragment extends Fragment {
     foodRRecyclerView.setLayoutManager(horizontalLayout6);
     doHttpRequestFoodR();
 
-
-
     return view;
   }
 

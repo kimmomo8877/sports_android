@@ -9,22 +9,22 @@
     <item
         android:id="@+id/navigation_team"
         android:icon="@drawable/ic_calendar_alt"
-        android:title="홈" />
+        android:title="전지훈련팀" />
 
     <item
         android:id="@+id/navigation_sport"
         android:icon="@drawable/ic_heart"
-        android:title="홈" />
+        android:title="스포츠재활" />
 
     <item
         android:id="@+id/navigation_touring"
         android:icon="@drawable/ic_plane"
-        android:title="홈" />
+        android:title="투어링" />
 
     <item
         android:id="@+id/navigation_myInfo"
         android:icon="@drawable/ic_user_circle"
-        android:title="홈" />
+        android:title="My" />
 
 
 </menu>
