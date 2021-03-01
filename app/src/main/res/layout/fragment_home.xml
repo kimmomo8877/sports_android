@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    android:fadingEdge="none"
+    android:background="#ffffff"
+
+    tools:context=".MainActivity">
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        tools:context=".ui.home.HomeFragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/imageView_fragment_homeMain"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:src="@drawable/home_main" />
+
+        <ImageView
+            android:id="@+id/imageView_fragment_homeSub"
+            android:layout_width="160dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/main_sub"/>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        android:id="@+id/intro_recycler_view"/>
+
+    <TextView
+        android:id="@+id/textView_fragment_homeSport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="추천 스포츠시설"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:textSize="30sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        android:id="@+id/recycler_fragment_homeSportMenu"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            android:id="@+id/recycler_fragment_homeSport"/>
+
+    <TextView
+        android:id="@+id/textView_fragment_homeHotel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="추천 숙박"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:textSize="30sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        android:id="@+id/recycler_fragment_homeHotelMenu"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        android:id="@+id/recycler_fragment_homeHotel"/>
+
+    <TextView
+        android:id="@+id/textView_fragment_homeFood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="추천 음식"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:textSize="30sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        android:id="@+id/recycler_fragment_homeFoodMenu"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        android:id="@+id/recycler_fragment_homeFood"/>
+
+</LinearLayout>
+
+</ScrollView>

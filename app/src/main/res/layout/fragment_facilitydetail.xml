@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView_facilityDetail_main"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/home_main" />
+
+            <TextView
+                android:id="@+id/textView_facilityDetail_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textStyle="bold"
+                android:text="추천 스포츠시설"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp">
+
+                <com.ornach.nobobutton.NoboButton
+                    android:id="@+id/button_facilityDetail_reservation"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    app:nb_drawableResource="@drawable/ic_book_open"
+                    app:nb_backgroundColor="#EF3D56"
+                    app:nb_borderColor="#FFFFFF"
+                    app:nb_borderWidth="2dp"
+                    app:nb_radius="5dp"
+                    app:nb_text="예약"
+                    app:nb_textColor="#FFF"
+                    app:nb_focusColor="#B83CC3"/>
+
+
+                <com.ornach.nobobutton.NoboButton
+                    android:id="@+id/button_facilityDetail_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    app:nb_drawableResource="@drawable/ic_phone"
+                    app:nb_backgroundColor="#EF3D56"
+                    app:nb_borderColor="#FFFFFF"
+                    app:nb_borderWidth="2dp"
+                    app:nb_radius="5dp"
+                    app:nb_text="전화"
+                    app:nb_textColor="#FFF"
+                    app:nb_focusColor="#B83CC3"/>
+
+
+                <com.ornach.nobobutton.NoboButton
+                    android:id="@+id/button_facilityDetail_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    app:nb_drawableResource="@drawable/ic_map"
+                    app:nb_backgroundColor="#EF3D56"
+                    app:nb_borderColor="#FFFFFF"
+                    app:nb_borderWidth="2dp"
+                    app:nb_radius="5dp"
+                    app:nb_text="길찾기"
+                    app:nb_textColor="#FFF"
+                    app:nb_focusColor="#B83CC3"/>
+
+
+                <com.ornach.nobobutton.NoboButton
+                    android:id="@+id/button_facilityDetail_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    app:nb_drawableResource="@drawable/ic_save"
+                    app:nb_backgroundColor="#EF3D56"
+                    app:nb_borderColor="#FFFFFF"
+                    app:nb_borderWidth="2dp"
+                    app:nb_radius="5dp"
+                    app:nb_text="저장"
+                    app:nb_textColor="#FFF"
+                    app:nb_focusColor="#B83CC3"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/textView_facilityDetail_adderss"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="주소"
+                    android:textSize="18sp"
+                    android:layout_weight="9"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/textView_facilityDetail_adderssDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="18sp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/textView_facilityDetail_homepage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="홈페이지"
+                    android:textSize="18sp"
+                    android:layout_weight="8"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/textView_facilityDetail_homepageDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="18sp"
+                    android:text=""
+                    android:layout_weight="2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/textView_facilityDetail_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="전화"
+                    android:textSize="18sp"
+                    android:layout_weight="9"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/textView_facilityDetail_phoneDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="18sp"
+                    android:text=""
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <com.ornach.nobobutton.NoboButton
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:nb_borderColor="#000000"
+                app:nb_borderWidth="1dp" />
+
+            <TextView
+                android:id="@+id/textView_facilityDetail_sport"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp"
+                android:text="스포츠시설"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView_facilityDetail_sportDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="5dp"
+                android:text=""
+                android:textSize="18sp" />
+
+            <com.ornach.nobobutton.NoboButton
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:nb_borderColor="#000000"
+                app:nb_borderWidth="1dp" />
+
+            <TextView
+                android:id="@+id/textView_facilityDetail_facility"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp"
+                android:text="부속시설"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView_facilityDetail_facilityDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="5dp"
+                android:text=""
+                android:textSize="18sp" />
+
+            <com.ornach.nobobutton.NoboButton
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:nb_borderColor="#000000"
+                app:nb_borderWidth="1dp" />
+
+            <TextView
+                android:id="@+id/textView_facilityDetail_etc"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp"
+                android:text="기타 부대시설"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView_facilityDetail_etcDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="5dp"
+                android:text=""
+                android:textSize="18sp" />
+
+            <com.ornach.nobobutton.NoboButton
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:nb_borderColor="#000000"
+                app:nb_borderWidth="1dp" />
+
+            <TextView
+                android:id="@+id/textView_facilityDetail_location"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp"
+                android:text="위치"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView_facilityDetail_locationDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="5dp"
+                android:text=""
+                android:textSize="18sp" />
+
+            <com.ornach.nobobutton.NoboButton
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:nb_borderColor="#000000"
+                app:nb_borderWidth="1dp" />
+
+            <TextView
+                android:id="@+id/textView_facilityDetail_fare"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp"
+                android:text="요금"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView_facilityDetail_fareDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="5dp"
+                android:text=""
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

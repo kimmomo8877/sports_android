@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="홈" />
+
+    <item
+        android:id="@+id/navigation_team"
+        android:icon="@drawable/ic_calendar_alt"
+        android:title="홈" />
+
+    <item
+        android:id="@+id/navigation_sport"
+        android:icon="@drawable/ic_heart"
+        android:title="홈" />
+
+    <item
+        android:id="@+id/navigation_touring"
+        android:icon="@drawable/ic_plane"
+        android:title="홈" />
+
+    <item
+        android:id="@+id/navigation_myInfo"
+        android:icon="@drawable/ic_user_circle"
+        android:title="홈" />
+
+
+</menu>
