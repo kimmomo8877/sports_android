@@ -1,5 +1,7 @@
 package com.example.and02.ui.team;
 
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.and02.R;
@@ -37,9 +40,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
                 public void onClick(View v) {
                     int pos = getAdapterPosition() ;
                     if (pos != RecyclerView.NO_POSITION) {
-//                        Bundle bundle = new Bundle();
+                        Log.i("FavAdapter", favoriteModelList.get(pos).getSearchWord());
+                        Bundle bundle = new Bundle();
 //                        bundle.putSerializable("infraModel", searchModelList.get(pos));
-//                        Navigation.findNavController(v).navigate(R.id.action_navigation_team_to_facilityDetailFragment, bundle);
+                        bundle.putString("searchWord", favoriteModelList.get(pos).getSearchWord());
+                        Navigation.findNavController(v).navigate(R.id.action_searchFragment_to_searchResultFragment, bundle);
                     }
                 }
             });
@@ -81,32 +86,24 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     public Filter getFilter() {
         return dataFilter;
     }
-
     private Filter dataFilter = new Filter() {
-        //Automatic on background thread
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-
-            // 삭제할 할 경우 로직
             List<FavoriteModel> filteredList = new ArrayList<>();
-
-            if (constraint == null || constraint.length() == 0 || constraint.toString() == "전체") {
+            if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(favoriteModelList_orig);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
                 for (FavoriteModel item : favoriteModelList_orig) {
-                    //TODO filter 대상 setting
-//                    if (item.getInfraCategoryModel().getName().toLowerCase().contains(filterPattern)) {
-//                        filteredList.add(item);
-//                    }
+                    if (item.getSearchWord().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
                 }
             }
             FilterResults results = new FilterResults();
             results.values = filteredList;
             return results;
         }
-
-        //Automatic on UI thread
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             favoriteModelList.clear();

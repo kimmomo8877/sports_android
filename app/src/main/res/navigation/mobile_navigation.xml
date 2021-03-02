@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/facilityDetailFragment"
-        android:name="com.example.and02.ui.home.FacilityDetailFragment"
+        android:name="com.example.and02.ui.team.FacilityDetailFragment"
         android:label="FacilityDetailFragment" />
     <fragment
         android:id="@+id/dashboardFragment"
@@ -53,5 +53,25 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.and02.ui.team.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.example.and02.ui.team.SearchResultFragment"
+        android:label="SearchResultFragment" >
+        <action
+            android:id="@+id/action_searchResultFragment_to_facilityMapFragment"
+            app:destination="@id/facilityMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/facilityMapFragment"
+        android:name="com.example.and02.ui.team.FacilityMapFragment"
+        android:label="FacilityMapFragment" >
+        <action
+            android:id="@+id/action_facilityMapFragment_to_facilityDetailFragment"
+            app:destination="@id/facilityDetailFragment" />
+    </fragment>
 </navigation>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginBottom="5dp"
+    android:orientation="vertical">
+
+    <com.google.android.gms.maps.MapView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map_fragment_facility" />
+
+    <Button
+        android:id="@+id/button_facilityMap_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textStyle="bold"
+        android:text="추천 스포츠시설"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
+
+        <com.ornach.nobobutton.NoboButton
+            android:id="@+id/button_facilityMap_reservation"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:nb_drawableResource="@drawable/ic_book_open"
+            app:nb_backgroundColor="#EF3D56"
+            app:nb_borderColor="#FFFFFF"
+            app:nb_borderWidth="2dp"
+            app:nb_radius="5dp"
+            app:nb_text="예약"
+            app:nb_textColor="#FFF"
+            app:nb_focusColor="#B83CC3"/>
+
+
+        <com.ornach.nobobutton.NoboButton
+            android:id="@+id/button_facilityMap_phone"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:nb_drawableResource="@drawable/ic_phone"
+            app:nb_backgroundColor="#EF3D56"
+            app:nb_borderColor="#FFFFFF"
+            app:nb_borderWidth="2dp"
+            app:nb_radius="5dp"
+            app:nb_text="전화"
+            app:nb_textColor="#FFF"
+            app:nb_focusColor="#B83CC3"/>
+
+
+        <com.ornach.nobobutton.NoboButton
+            android:id="@+id/button_facilityMap_map"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:nb_drawableResource="@drawable/ic_map"
+            app:nb_backgroundColor="#EF3D56"
+            app:nb_borderColor="#FFFFFF"
+            app:nb_borderWidth="2dp"
+            app:nb_radius="5dp"
+            app:nb_text="길찾기"
+            app:nb_textColor="#FFF"
+            app:nb_focusColor="#B83CC3"/>
+
+
+        <com.ornach.nobobutton.NoboButton
+            android:id="@+id/button_facilityMap_save"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:nb_drawableResource="@drawable/ic_save"
+            app:nb_backgroundColor="#EF3D56"
+            app:nb_borderColor="#FFFFFF"
+            app:nb_borderWidth="2dp"
+            app:nb_radius="5dp"
+            app:nb_text="저장"
+            app:nb_textColor="#FFF"
+            app:nb_focusColor="#B83CC3"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

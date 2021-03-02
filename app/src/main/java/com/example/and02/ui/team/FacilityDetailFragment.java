@@ -1,4 +1,4 @@
-package com.example.and02.ui.home;
+package com.example.and02.ui.team;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -31,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.and02.MainActivity;
 import com.example.and02.R;
 import com.example.and02.ui.common.ListModel;
+import com.example.and02.ui.home.InfraModel;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ornach.nobobutton.NoboButton;
 import com.squareup.picasso.Picasso;
