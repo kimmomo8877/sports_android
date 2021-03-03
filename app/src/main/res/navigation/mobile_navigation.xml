@@ -49,7 +49,11 @@
         android:id="@+id/navigation_touring"
         android:name="com.example.and02.ui.touring.TouringFragment"
         android:label="fragment_touring"
-        tools:layout="@layout/fragment_touring" />
+        tools:layout="@layout/fragment_touring" >
+        <action
+            android:id="@+id/action_navigation_touring_to_facilityDetailFragment"
+            app:destination="@id/facilityDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.and02.ui.team.SearchFragment"

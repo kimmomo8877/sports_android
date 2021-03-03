@@ -107,7 +107,7 @@ public class TeamFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_team, container, false);
 
 
-        Button btnSearch = view.findViewById(R.id.button_fragment_search);
+        NoboButton btnSearch = view.findViewById(R.id.button_team_search);
         btnSearch.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {

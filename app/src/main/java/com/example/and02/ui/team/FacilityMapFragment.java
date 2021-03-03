@@ -109,6 +109,16 @@ public class FacilityMapFragment extends Fragment implements OnMapReadyCallback 
         });
 //        setButton(btnTitle);
 
+        NoboButton btnPhone = view.findViewById(R.id.button_facilityMap_phone);
+        btnPhone.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("infraModel", infraModel);
+                Navigation.findNavController(view).navigate(R.id.action_facilityMapFragment_to_facilityDetailFragment, bundle);
+            }
+        }) ;
+
 
         return view;
     }

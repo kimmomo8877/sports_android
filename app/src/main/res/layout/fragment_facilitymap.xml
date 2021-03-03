@@ -10,26 +10,27 @@
 
     <com.google.android.gms.maps.MapView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
         android:id="@+id/map_fragment_facility" />
 
     <Button
         android:id="@+id/button_facilityMap_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:layout_height="0dp"
+        android:background="#00ff0000"
         android:textStyle="bold"
         android:text="추천 스포츠시설"
-        android:textSize="30sp" />
+        android:layout_weight="1"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp">
+        android:layout_marginRight="40dp"
+        android:layout_weight="1">
 
         <com.ornach.nobobutton.NoboButton
             android:id="@+id/button_facilityMap_reservation"

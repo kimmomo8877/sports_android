@@ -91,13 +91,13 @@ public class FacilityDetailFragment extends Fragment {
 
         final InfraModel infraModel = (InfraModel) getArguments().getSerializable("infraModel");
 
-
-        Uri uri = Uri.parse(infraModel.getAttachFile());
-        ImageView iv = view.findViewById(R.id.imageView_facilityDetail_main);
-        Picasso.get().load(uri).fit().centerCrop().into(iv);
+        if (infraModel.getAttachFile() != null) {
+            Uri uri = Uri.parse(infraModel.getAttachFile());
+            ImageView iv = view.findViewById(R.id.imageView_facilityDetail_main);
+            Picasso.get().load(uri).fit().centerCrop().into(iv);
 //        iv.setImageURI(uri);
-        Log.i("imageload", String.valueOf(uri));
-
+            Log.i("imageload", String.valueOf(uri));
+        }
         NoboButton btnResv = view.findViewById(R.id.button_facilityDetail_reservation);
         btnResv.setOnClickListener(new Button.OnClickListener() {
             @Override
