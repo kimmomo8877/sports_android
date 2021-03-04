@@ -78,4 +78,31 @@
             android:id="@+id/action_facilityMapFragment_to_facilityDetailFragment"
             app:destination="@id/facilityDetailFragment" />
     </fragment>
+
+    <fragment android:id="@+id/navigation_tracker_config"
+              android:name="com.example.and02.ui.tracker.TrackerConfigFragment" android:label="트래커 사용설정"
+              tools:layout="@layout/fragment_tracker_config">
+        <action android:id="@+id/action_tracker_config_to_tracker_main" app:destination="@id/navigation_tracker_main"
+                app:enterAnim="@anim/nav_default_enter_anim"/>
+    </fragment>
+
+    <fragment android:id="@+id/navigation_tracker_main" android:name="com.example.and02.ui.tracker.TrackerMainFragment"
+              android:label="트래커 메인"
+              tools:layout="@layout/fragment_tracker_main">
+        <action android:id="@+id/action_tracker_main_to_tracker_detail" app:destination="@id/navigation_tracker_detail"
+                app:popUpTo="@id/navigation_tracker_main" app:popUpToInclusive="true"
+                app:enterAnim="@anim/fragment_fade_enter"/>
+    </fragment>
+
+    <fragment android:id="@+id/navigation_tracker_detail"
+              android:name="com.example.and02.ui.tracker.TrackerDetailFragment"
+              android:label="트래커"
+              tools:layout="@layout/fragment_tracker_detail"/>
+
+    <fragment android:id="@+id/navigation_my_page"
+              android:name="com.example.and02.ui.my.MyPageFragment"
+              android:label="마이페이지"
+              tools:layout="@layout/fragment_my_page"/>
+
+
 </navigation>

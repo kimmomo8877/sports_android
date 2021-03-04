@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:weightSum="10"
+              tools:context=".ui.tracker.TrackerMainFragment">
+
+    <com.app.progresviews.ProgressLine
+            android:id="@+id/progressBar_trackerMain_heartRate"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            app:definition="BPM (Max 200)"
+            app:value="120"
+            app:lineBarWidth="10dp"
+            app:valuePercentage="30"
+            app:valueDefTextSize="30sp"
+            app:lineDefTextSize="15sp"
+            app:lineProgressColor="#43bd9f"
+            app:underLineColor="@android:color/darker_gray"
+    />
+    <com.app.progresviews.ProgressLine
+            android:id="@+id/progressBar_trackerMain_activity"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            app:definition="Steps"
+            app:value="0"
+            app:lineBarWidth="10dp"
+            app:valuePercentage="0"
+            app:valueDefTextSize="30sp"
+            app:lineDefTextSize="15sp"
+            app:lineProgressColor="#F44336"
+            app:underLineColor="@android:color/darker_gray"
+    />
+    <com.app.progresviews.ProgressWheel
+            android:id="@+id/progressWheel_trackerMain_activity"
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:layout_gravity="center"
+            app:barWidth="20dp"
+            app:marginBtwText="20dp"
+            app:countText="0"
+            app:definitionText="Steps"
+            app:countTextColor="@android:color/black"
+            app:defTextColor="@android:color/black"
+            app:progressColor="#64b324"
+            app:defTextSize="15sp"
+            app:countTextSize="40sp"
+            app:percentage="0"/>
+
+    <Button
+            android:id="@+id/btn_trackerMain_toTrackerDetail"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="운동 시작"
+    />
+
+</LinearLayout>

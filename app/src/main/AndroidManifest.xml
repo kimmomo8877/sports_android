@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.home.SecondActivity" />
+        <activity android:name=".LoginActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

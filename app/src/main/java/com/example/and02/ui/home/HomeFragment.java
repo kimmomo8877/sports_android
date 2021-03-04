@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
+  private Button btnTracker;
 
   private RecyclerView introRecyclerView;
   private RecyclerView sportRRecyclerView;
@@ -67,9 +69,9 @@ public class HomeFragment extends Fragment {
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     // Inflate the menu; this adds items to the action bar.
-    menu.clear();
+//    super.onCreateOptionsMenu(menu, inflater);
+//    menu.clear();
     inflater.inflate(R.menu.home_nav_menu, menu);
-    super.onCreateOptionsMenu(menu, inflater);
 
   }
 
@@ -87,6 +89,19 @@ public class HomeFragment extends Fragment {
       default:
          return super.onOptionsItemSelected(item);
     }
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
+//    this.btnTracker = view.findViewById(R.id.home_tracker_button);
+//    this.btnTracker.setOnClickListener(new View.OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        System.out.println("");
+//      }
+//    });
   }
 
   public View onCreateView(@NonNull LayoutInflater inflater,
