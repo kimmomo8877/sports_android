@@ -26,6 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.inbody.inbodysdk.IB_BleManager;
 import com.inbody.inbodysdk.IB_SDKConst;
+import com.ornach.nobobutton.NoboButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,11 +45,11 @@ public class TrackerDetailFragment extends Fragment {
     private final IB_BleManager inBodyBLEManager = IB_BleManager.getInstance();
 
     private BottomNavigationView navigationView;
-    private Button btnRefresh;
-    private Button btnRunHR;
-    private Button btnRunInBody;
-    private Button btnStartActivity;
-    private Button btnEndActivity;
+    private NoboButton btnRefresh;
+    private NoboButton btnRunHR;
+    private NoboButton btnRunInBody;
+    private NoboButton btnStartActivity;
+    private NoboButton btnEndActivity;
     private TextView textDashboardTimer;
     private TextView textTrackingCount;
     private TextView textTrackingDistance;

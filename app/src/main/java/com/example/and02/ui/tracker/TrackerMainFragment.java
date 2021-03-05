@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -12,9 +11,10 @@ import androidx.navigation.Navigation;
 import com.app.progresviews.ProgressLine;
 import com.app.progresviews.ProgressWheel;
 import com.example.and02.R;
+import com.ornach.nobobutton.NoboButton;
 
 public class TrackerMainFragment extends Fragment {
-    private Button btnToTrackerDetail;
+    private NoboButton btnToTrackerDetail;
     private ProgressWheel progressWheelActivity;
     private ProgressLine progressLineActivity;
     private ProgressLine progressLineHeartRate;

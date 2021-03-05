@@ -16,6 +16,7 @@
             android:value="AIzaSyDAubpPlo1Ma4ila2oHYUr7fIdU51PTWEM" />
 
         <activity
+                android:windowSoftInputMode="adjustNothing"
                 android:name=".MainActivity"
                 android:label="@string/app_name">
             <intent-filter>
@@ -28,4 +29,5 @@
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 </manifest>

@@ -14,9 +14,10 @@ import android.view.ViewGroup;
 import com.example.and02.LoginActivity;
 import com.example.and02.R;
 import com.example.and02.ui.common.SharedUserData;
+import com.ornach.nobobutton.NoboButton;
 
 public class MyPageFragment extends Fragment {
-    private Button btnLogin;
+    private NoboButton btnLogin;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.example.and02.R;
 import com.example.and02.ui.tracker.model.target.TargetInfoModel;
 import com.example.and02.ui.tracker.model.target.TargetModel;
 import com.google.gson.Gson;
+import com.ornach.nobobutton.NoboButton;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -32,8 +34,8 @@ import java.util.List;
 import java.util.Map;
 
 public class TrackerConfigFragment extends Fragment {
-    private Button btnToTrackerMain;
-    private Button btnToLogin;
+    private NoboButton btnToTrackerMain;
+    private NoboButton btnToLogin;
     private EditText editTextAge;
     private EditText editTextHeight;
     private EditText editTextWeight;
@@ -66,10 +68,15 @@ public class TrackerConfigFragment extends Fragment {
         this.btnToTrackerMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String age = editTextAge.getText().toString();
-                String weight = editTextWeight.getText().toString();
-                String height = editTextHeight.getText().toString();
-                String goal = editTextGoal.getText().toString();
+                Editable ageEditable = editTextAge.getText();
+                Editable weightEditable = editTextWeight.getText();
+                Editable heightEditable = editTextHeight.getText();
+                Editable goalEditable = editTextGoal.getText();
+
+                String age = ageEditable.toString();
+                String weight = weightEditable.toString();
+                String height = heightEditable.toString();
+                String goal = goalEditable.toString();
 
                 if (age.equals("") || weight.equals("") || height.equals("") || goal.equals("") || centerList.length == 0) {
                     Toast.makeText(getContext(), "모든 설정을 완료해주세요.", Toast.LENGTH_SHORT).show();

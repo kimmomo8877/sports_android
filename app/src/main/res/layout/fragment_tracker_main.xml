@@ -52,12 +52,26 @@
             app:countTextSize="40sp"
             app:percentage="0"/>
 
-    <Button
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+    <com.ornach.nobobutton.NoboButton
             android:id="@+id/btn_trackerMain_toTrackerDetail"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="운동 시작"
+            android:layout_marginBottom="20dp"
+            android:layout_marginHorizontal="10dp"
+            app:nb_text="운동시작"
+            app:nb_borderColor="#FFFFFF"
+            app:nb_borderWidth="2dp"
+            app:nb_backgroundColor="#6200EE"
+            app:nb_focusColor="#B83CC3"
+            app:nb_textColor="#FFF"
+            app:nb_textSize="20sp"
+            app:nb_radius="10dp"
     />
 
 </LinearLayout>
