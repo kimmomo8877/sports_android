@@ -25,4 +25,11 @@ public class SharedUserData {
         editor.putString("token", token);
         editor.apply();
     }
+
+    public static String getUserNo(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("User", Context.MODE_PRIVATE);
+        return preferences.getString("userNo", null);
+    }
+
+
 }
