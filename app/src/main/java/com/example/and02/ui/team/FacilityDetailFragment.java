@@ -1,5 +1,6 @@
 package com.example.and02.ui.team;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -28,9 +29,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.and02.LoginActivity;
 import com.example.and02.MainActivity;
 import com.example.and02.R;
 import com.example.and02.ui.common.ListModel;
+import com.example.and02.ui.common.SharedUserData;
 import com.example.and02.ui.home.InfraModel;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ornach.nobobutton.NoboButton;
@@ -103,6 +106,18 @@ public class FacilityDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.i("reservationButton", "reservation button click");
+                Context context = getContext();
+                if (SharedUserData.isLogin(context)) {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("infraModel", infraModel);
+                    Navigation.findNavController(view).navigate(R.id.action_facilityDetailFragment_to_reservationFragment, bundle);
+//                    SharedUserData.logout(context);
+//                    btnLogin.setText("로그인");
+//                    Toast.makeText(getActivity(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         }) ;
         setButton(btnResv);

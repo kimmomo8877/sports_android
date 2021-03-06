@@ -100,7 +100,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
         holder.button_menu.setLayoutParams(params);
 //        holder.button_menu.setBackgroundColor(Color.BLACK);
 
-
 //        int menuLength = listModelList.get(position).getMenu().length();
 //        this.button_item = holder.itemView.findViewById(R.id.button_menu);
 //

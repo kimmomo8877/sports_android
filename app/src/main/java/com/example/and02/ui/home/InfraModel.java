@@ -1,5 +1,8 @@
 package com.example.and02.ui.home;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.and02.ui.common.ChargeModel;
 import com.example.and02.ui.common.CodeModel;
 
@@ -7,7 +10,7 @@ import org.json.JSONArray;
 
 import java.io.Serializable;
 
-public class InfraModel implements Serializable {
+public class InfraModel implements Serializable, Parcelable {
     private String infraNo;
     private int infraCategoryNo;
     private String parentInfraNo;
@@ -232,5 +235,15 @@ public class InfraModel implements Serializable {
 
     public void setDeleteYn(boolean deleteYn) {
         this.deleteYn = deleteYn;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.and02;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.widget.Button;
 
 import com.example.and02.ui.home.HomeFragment;
 import com.example.and02.ui.sport.SportFragment;
+import com.example.and02.ui.team.SearchResultBottomFragment;
 import com.example.and02.ui.team.TeamFragment;
 import com.example.and02.ui.touring.TouringFragment;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -23,7 +25,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchResultBottomFragment.ItemClickListener{
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -44,4 +46,8 @@ public class MainActivity extends AppCompatActivity {
   }
 
 
+  @Override
+  public void onItemClick(String item) {
+    Log.i("item activer", "click");
+  }
 }

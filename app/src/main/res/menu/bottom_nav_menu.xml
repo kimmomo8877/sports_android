@@ -7,7 +7,7 @@
         android:title="홈" />
 
     <item
-        android:id="@+id/navigation_tracker_config"
+        android:id="@+id/navigation_team"
         android:icon="@drawable/ic_calendar_alt"
         android:title="전지훈련팀" />
 

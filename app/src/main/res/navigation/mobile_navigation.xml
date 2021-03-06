@@ -22,7 +22,11 @@
     <fragment
         android:id="@+id/facilityDetailFragment"
         android:name="com.example.and02.ui.team.FacilityDetailFragment"
-        android:label="FacilityDetailFragment" />
+        android:label="FacilityDetailFragment" >
+        <action
+            android:id="@+id/action_facilityDetailFragment_to_reservationFragment"
+            app:destination="@id/reservationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.and02.ui.dashboard.DashboardFragment"
@@ -103,6 +107,10 @@
               android:name="com.example.and02.ui.my.MyPageFragment"
               android:label="마이페이지"
               tools:layout="@layout/fragment_my_page"/>
+    <fragment
+        android:id="@+id/reservationFragment"
+        android:name="com.example.and02.ui.team.ReservationFragment"
+        android:label="ReservationFragment" />
 
 
 </navigation>

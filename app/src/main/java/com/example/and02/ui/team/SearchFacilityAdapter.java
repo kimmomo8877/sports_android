@@ -21,10 +21,34 @@ import java.util.List;
 public class SearchFacilityAdapter extends RecyclerView.Adapter<SearchFacilityAdapter.SearchFacilityViewHolder>  {
     private List<InfraModel> infraModelList;
     private List<InfraModel> infraModelList_orig;
+    private List<TeamModel> teamModelList;
+    private List<TeamModel> teamModelList_orig;
 
-    public SearchFacilityAdapter(List<InfraModel> infraModelList) {
+    private String kindList;
+
+    public void setInfraModelList(List<InfraModel> infraModelList) {
         this.infraModelList = infraModelList;
     }
+
+    public void setInfraModelList_orig(List<InfraModel> infraModelList_orig) {
+        this.infraModelList_orig = infraModelList_orig;
+    }
+
+    public void setTeamModelList(List<TeamModel> teamModelList) {
+        this.teamModelList = teamModelList;
+    }
+
+    public void setTeamModelList_orig(List<TeamModel> teamModelList_orig) {
+        this.teamModelList_orig = teamModelList_orig;
+    }
+
+    public void setKindList(String kindList) {
+        this.kindList = kindList;
+    }
+
+//    public SearchFacilityAdapter(List<InfraModel> infraModelList) {
+//        this.infraModelList = infraModelList;
+//    }
 
     public class SearchFacilityViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewName;
@@ -77,17 +101,34 @@ public class SearchFacilityAdapter extends RecyclerView.Adapter<SearchFacilityAd
     @Override
     public void onBindViewHolder(@NonNull SearchFacilityAdapter.SearchFacilityViewHolder holder, int position) {
 
-        if (infraModelList.get(position).getName() != null ) {
-            holder.getTextViewName().setText(infraModelList.get(position).getName());
-        }
 
-        if (infraModelList.get(position).getAddress() != null ) {
-            holder.getTextViewAddress().setText(infraModelList.get(position).getAddress());
-        }
 
-        if (infraModelList.get(position).getAttachFile() != null ) {
-            Uri uri = Uri.parse(infraModelList.get(position).getAttachFile());
-            holder.getImageViewImage().setImageURI(uri);
+        if (kindList.equals("FACILITY")) {
+            if (infraModelList.get(position).getName() != null) {
+                holder.getTextViewName().setText(infraModelList.get(position).getName());
+            }
+
+            if (infraModelList.get(position).getAddress() != null) {
+                holder.getTextViewAddress().setText(infraModelList.get(position).getAddress());
+            }
+
+            if (infraModelList.get(position).getAttachFile() != null) {
+                Uri uri = Uri.parse(infraModelList.get(position).getAttachFile());
+                holder.getImageViewImage().setImageURI(uri);
+            }
+        } else if (kindList.equals("TEAM")) {
+            if (teamModelList.get(position).getName() != null) {
+                holder.getTextViewName().setText(teamModelList.get(position).getName());
+            }
+            if (teamModelList.get(position).getAttachFile() != null) {
+                Uri uri = Uri.parse(teamModelList.get(position).getAttachFile());
+                holder.getImageViewImage().setImageURI(uri);
+            }
+
+//            if (teamModelList.get(position).getAddress() != null) {
+//                holder.getTextViewAddress().setText(teamModelList.get(position).getAddress());
+//            }
+
         }
 
     }

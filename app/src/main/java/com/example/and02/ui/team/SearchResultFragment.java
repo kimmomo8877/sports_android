@@ -27,6 +27,7 @@ import com.example.and02.R;
 import com.example.and02.ui.common.UserModel;
 import com.example.and02.ui.home.InfraCategoryModel;
 import com.example.and02.ui.home.InfraModel;
+import com.ornach.nobobutton.NoboButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,13 +37,13 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchResultFragment extends Fragment {
+public class SearchResultFragment extends Fragment  {
 
     private RecyclerView searchFacilityRecyclerView;
     private RecyclerView searchTeamRecyclerView;
     private RequestQueue requestQueue;
 
-    private SearchFacilityAdapter searchFacilityAdapter;
+    private SearchFacilityAdapter searchFacilityAdapter = new SearchFacilityAdapter();
     private SearchTeamAdapter searchTeamAdapter;
     private String imageUrl = "http://www.kbostat.co.kr/resource/static-file";
 
@@ -92,8 +93,10 @@ public class SearchResultFragment extends Fragment {
         btnFacility.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                View view = inflater.inflate(R.layout.fragment_searchresult, container, false);
-
+                searchFacilityAdapter.setKindList("FACILITY");
+                searchFacilityRecyclerView.removeAllViewsInLayout();
+                searchFacilityRecyclerView.setAdapter(searchFacilityAdapter);
+//                searchFacilityAdapter.notifyDataSetChanged();
             }
         });
 
@@ -101,10 +104,31 @@ public class SearchResultFragment extends Fragment {
         btnTeam.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                searchFacilityAdapter.setKindList("TEAM");
+                searchFacilityRecyclerView.removeAllViewsInLayout();
+                searchFacilityRecyclerView.setAdapter(searchFacilityAdapter);
+//                searchFacilityAdapter.notifyDataSetChanged();
             }
         });
 
+        NoboButton btnKind = view.findViewById(R.id.button_searchResult_kind);
+        btnKind.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SearchResultBottomFragment searchResultBottomFragment =
+                        SearchResultBottomFragment.newInstance();
+                searchResultBottomFragment.show(getFragmentManager() ,
+                        searchResultBottomFragment.TAG);
+
+
+//                public void showBottomSheet(View view) {
+//                    SearchResultBottomFragment searchResultBottomFragment =
+//                            SearchResultBottomFragment.newInstance();
+//                    searchResultBottomFragment.show(getSupportFragmentManager(),
+//                            searchResultBottomFragment.TAG);
+//                }
+            }
+        });
 
         searchFacilityRecyclerView = view.findViewById(R.id.recycler_searchResult_facility);
         searchFacilityRecyclerView.setHasFixedSize(true);
@@ -112,9 +136,9 @@ public class SearchResultFragment extends Fragment {
         doHttpRequestFacility();
 
 
-        searchTeamRecyclerView = view.findViewById(R.id.recycler_searchResult_team);
-        searchTeamRecyclerView.setHasFixedSize(true);
-        searchTeamRecyclerView.setLayoutManager(mLayoutManager2);
+//        searchTeamRecyclerView = view.findViewById(R.id.recycler_searchResult_team);
+//        searchTeamRecyclerView.setHasFixedSize(true);
+//        searchTeamRecyclerView.setLayoutManager(mLayoutManager2);
         doHttpRequestTeam();
 
 
@@ -150,9 +174,12 @@ public class SearchResultFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                searchFacilityAdapter = new SearchFacilityAdapter(result);
+//                searchFacilityAdapter = new SearchFacilityAdapter(result);
+                searchFacilityAdapter.setInfraModelList(result);
+                searchFacilityAdapter.setKindList("FACILITY");
                 List<InfraModel> result_orig = new ArrayList<>();
                 result_orig.addAll(result);
+                searchFacilityAdapter.setInfraModelList_orig(result_orig);
 //                searchFacilityAdapter.setFavoriteModelList_orig(result_orig);
                 searchFacilityRecyclerView.setAdapter(searchFacilityAdapter);
                 Log.i("TEST", response);
@@ -198,11 +225,13 @@ public class SearchResultFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                searchTeamAdapter = new SearchTeamAdapter(result);
+//                searchTeamAdapter = new SearchTeamAdapter(result);
+                searchFacilityAdapter.setTeamModelList(result);
                 List<TeamModel> result_orig = new ArrayList<>();
                 result_orig.addAll(result);
+                searchFacilityAdapter.setTeamModelList_orig(result_orig);
 //                searchFacilityAdapter.setFavoriteModelList_orig(result_orig);
-                searchTeamRecyclerView.setAdapter(searchTeamAdapter);
+//                searchTeamRecyclerView.setAdapter(searchTeamAdapter);
                 Log.i("TEST", response);
 
             }
@@ -266,22 +295,20 @@ public class SearchResultFragment extends Fragment {
 //        teamModel.setRegionCodeId(data.getInt("regionCodeId"));
 //        teamModel.setSportCodeId(data.getInt("sportCodeId"));
 
+//        return teamModel;
+        if (teamModel.getAttachFiles() != null) {
+            if (teamModel.getAttachFiles().length() > 0) {
+                JSONObject attachObject = teamModel.getAttachFiles().getJSONObject(0);
+                StringBuilder sb = new StringBuilder(imageUrl);
+                sb.append(attachObject.getString("saveFilePath"));
+                teamModel.setAttachFile(sb.toString());
+            } else {
+            }
+        }
         return teamModel;
-
-//        if (infraModel.getAttachFiles().length() > 0) {
-//            JSONObject attachObject = infraModel.getAttachFiles().getJSONObject(0);
-//            StringBuilder sb = new StringBuilder(imageUrl);
-//            sb.append(attachObject.getString("saveFilePath"));
-//            infraModel.setAttachFile(sb.toString());
-//            return infraModel;
-//        } else {
-//            return infraModel;
-//        }
-
     }
 
 }
-
 
 
 // http://www.kbostat.co.kr/resource/infra?serachWord=searchWord"

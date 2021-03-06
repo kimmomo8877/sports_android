@@ -28,7 +28,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:textStyle="bold"
-                android:text="추천 스포츠시설"
+                android:text=""
                 android:textSize="30sp" />
 
             <LinearLayout

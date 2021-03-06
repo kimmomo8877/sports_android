@@ -43,21 +43,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
       this.textViewTitle = itemView.findViewById(R.id.textView_title);
       this.imageView = itemView.findViewById(R.id.imageView_title);
 
-      int pos1 = getAdapterPosition() ;
-      if (pos1 != RecyclerView.NO_POSITION) {
-        if (homeModelList.get(pos1).getCheckVisiable() == View.INVISIBLE) {
-          this.imageView.setVisibility(View.INVISIBLE);
-          this.textViewTitle.setVisibility(View.INVISIBLE);
-        } else {
-          this.imageView.setVisibility(View.VISIBLE);
-          this.textViewTitle.setVisibility(View.VISIBLE);
-        }
-      }
       itemView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
           int pos = getAdapterPosition() ;
-//          getFilter().filter("축구");
           if (pos != RecyclerView.NO_POSITION) {
             Bundle bundle = new Bundle();
             bundle.putSerializable("infraModel", homeModelList.get(pos));
@@ -105,7 +94,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     return homeModelList;
   }
 
-
   @Override
   public Filter getFilter() {
     return exampleFilter;
@@ -133,9 +121,29 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
       FilterResults results = new FilterResults();
       results.values = filteredList;
       return results;
+    }
+
+    //Automatic on UI thread
+    @Override
+    protected void publishResults(CharSequence constraint, FilterResults results) {
+      homeModelList.clear();
+      homeModelList.addAll((List) results.values);
+      notifyDataSetChanged();
+    }
+  };
+
+  public List<InfraModel> getHomeModelList_orig() {
+    return homeModelList_orig;
+  }
+
+  public void setHomeModelList_orig(List<InfraModel> homeModelList_orig) {
+    this.homeModelList_orig = homeModelList_orig;
+  }
+}
 
 
-      // visiable 할 경우 로직
+
+// visiable 할 경우 로직
 //            List<InfraModel> filteredList = new ArrayList<>();
 //
 //      for (InfraModel item : homeModelList) {
@@ -158,27 +166,19 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 //      FilterResults results = new FilterResults();
 //      results.values = filteredList;
 //      return results;
-    }
-
-    //Automatic on UI thread
-    @Override
-    protected void publishResults(CharSequence constraint, FilterResults results) {
-      homeModelList.clear();
-      homeModelList.addAll((List) results.values);
-      notifyDataSetChanged();
-    }
-  };
-
-  public List<InfraModel> getHomeModelList_orig() {
-    return homeModelList_orig;
-  }
-
-  public void setHomeModelList_orig(List<InfraModel> homeModelList_orig) {
-    this.homeModelList_orig = homeModelList_orig;
-  }
-}
 
 //          Bundle bundle = new Bundle();
 //        bundle.putParcelable("infraNo",);
 //        bundle.putString("infraNo", "4387c0372e");
 //          Navigation.findNavController(v).navigate(R.id.action_home_to_facilityDetail, bundle);
+
+//      int pos1 = getAdapterPosition() ;
+//      if (pos1 != RecyclerView.NO_POSITION) {
+//        if (homeModelList.get(pos1).getCheckVisiable() == View.INVISIBLE) {
+//          this.imageView.setVisibility(View.INVISIBLE);
+//          this.textViewTitle.setVisibility(View.INVISIBLE);
+//        } else {
+//          this.imageView.setVisibility(View.VISIBLE);
+//          this.textViewTitle.setVisibility(View.VISIBLE);
+//        }
+//      }

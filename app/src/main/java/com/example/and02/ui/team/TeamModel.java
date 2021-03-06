@@ -3,6 +3,8 @@ package com.example.and02.ui.team;
 import com.example.and02.ui.common.CodeModel;
 import com.example.and02.ui.common.UserModel;
 
+import org.json.JSONArray;
+
 import java.io.Serializable;
 
 public class TeamModel implements Serializable {
@@ -24,6 +26,8 @@ public class TeamModel implements Serializable {
     private CodeModel regionCode;
     private CodeModel psortCode;
     private boolean deleteYn;
+    private JSONArray attachFiles;
+    private String attachFile;
 
     public UserModel getRegister() {
         return register;
@@ -159,5 +163,21 @@ public class TeamModel implements Serializable {
 
     public void setDeleteYn(boolean deleteYn) {
         this.deleteYn = deleteYn;
+    }
+
+    public JSONArray getAttachFiles() {
+        return attachFiles;
+    }
+
+    public void setAttachFiles(JSONArray attachFiles) {
+        this.attachFiles = attachFiles;
+    }
+
+    public String getAttachFile() {
+        return attachFile;
+    }
+
+    public void setAttachFile(String attachFile) {
+        this.attachFile = attachFile;
     }
 }
