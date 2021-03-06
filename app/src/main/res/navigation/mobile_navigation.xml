@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_searchResultFragment_to_facilityMapFragment"
             app:destination="@id/facilityMapFragment" />
+        <action
+            android:id="@+id/action_searchResultFragment_to_teamDetailFragment"
+            app:destination="@id/teamDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/facilityMapFragment"
@@ -111,6 +114,10 @@
         android:id="@+id/reservationFragment"
         android:name="com.example.and02.ui.team.ReservationFragment"
         android:label="ReservationFragment" />
+    <fragment
+        android:id="@+id/teamDetailFragment"
+        android:name="com.example.and02.ui.team.TeamDetailFragment"
+        android:label="TeamDetailFragment" />
 
 
 </navigation>

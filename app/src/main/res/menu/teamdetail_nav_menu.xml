@@ -6,16 +6,20 @@
         android:title="홈"
         app:showAsAction="never"/>
     <item
+        android:id="@+id/action_teamDetail_notice"
+        android:title="공지사항"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/action_teamDetail_schedule"
-        android:title="Search"
+        android:title="팀일정"
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_teamDetail_story"
-        android:title="Search"
+        android:title="팀스토리"
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_teamDetail_picture"
-        android:title="Search"
+        android:title="사진"
         app:showAsAction="never"/>
 </menu>
 

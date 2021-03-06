@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.and02.R;
+import com.example.and02.ui.common.CodeModel;
 import com.example.and02.ui.common.UserModel;
 import com.example.and02.ui.home.InfraCategoryModel;
 import com.example.and02.ui.home.InfraModel;
@@ -283,6 +284,33 @@ public class SearchResultFragment extends Fragment  {
 //        UserModel userModel = new UserModel();
 //        userModel.setName(userObject.getString("name"));
 //        userModel.setUserNo(userObject.getString("userNo"));
+
+//        if (data.getJSONObject("classificationCode") != null) {
+//            JSONObject classificationCode = data.getJSONObject("classificationCode");
+//            CodeModel classificationModel = new CodeModel();
+//            classificationModel.setName(classificationCode.getString("name"));
+//            teamModel.setClassificationCode(classificationModel);
+//        }
+
+        JSONObject belongCode = data.getJSONObject("belongCode");
+        CodeModel belongModel = new CodeModel();
+        belongModel.setName(belongCode.getString("name"));
+        teamModel.setBelongCode(belongModel);
+
+        JSONObject genderCode = data.getJSONObject("genderCode");
+        CodeModel genderModel = new CodeModel();
+        genderModel.setName(genderCode.getString("name"));
+        teamModel.setGenderCode(genderModel);
+
+        JSONObject regionCode = data.getJSONObject("regionCode");
+        CodeModel regionModel = new CodeModel();
+        regionModel.setName(regionCode.getString("name"));
+        teamModel.setRegionCode(regionModel);
+
+        JSONObject sportCode = data.getJSONObject("sportCode");
+        CodeModel sportModel = new CodeModel();
+        sportModel.setName(sportCode.getString("name"));
+        teamModel.setSportCode(sportModel);
 
         teamModel.setTeamNo(data.getString("teamNo"));
         teamModel.setName(data.getString("name"));

@@ -4,6 +4,8 @@ import com.example.and02.ui.common.CodeModel;
 import com.example.and02.ui.common.UserModel;
 import com.example.and02.ui.home.InfraModel;
 
+import org.json.JSONArray;
+
 import java.io.Serializable;
 
 public class ReservationModel implements Serializable {
@@ -24,6 +26,9 @@ public class ReservationModel implements Serializable {
     private String endDate;
     private boolean approve;
     private String errMsg;
+    private JSONArray attachFiles;
+    private String attachFile;
+    private String registeDate;
 
     public String getReservaterNo() {
         return reservaterNo;
@@ -151,5 +156,29 @@ public class ReservationModel implements Serializable {
 
     public void setErrMsg(String errMsg) {
         this.errMsg = errMsg;
+    }
+
+    public JSONArray getAttachFiles() {
+        return attachFiles;
+    }
+
+    public void setAttachFiles(JSONArray attachFiles) {
+        this.attachFiles = attachFiles;
+    }
+
+    public String getAttachFile() {
+        return attachFile;
+    }
+
+    public void setAttachFile(String attachFile) {
+        this.attachFile = attachFile;
+    }
+
+    public String getRegisteDate() {
+        return registeDate;
+    }
+
+    public void setRegisteDate(String registeDate) {
+        this.registeDate = registeDate;
     }
 }
