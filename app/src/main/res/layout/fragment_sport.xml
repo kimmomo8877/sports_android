@@ -14,14 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView_fragment_sport"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:layout_marginTop="50dp"
-            android:textSize="25dp"
-            android:layout_gravity="center"
-            android:text="간편히 온라인으로 예약하고\n내 몸 측정하기!" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,6 +30,14 @@
             android:orientation="vertical"
             android:layout_weight="1">
 
+            <TextView
+                    android:id="@+id/textView_fragment_sport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="50dp"
+                    android:textSize="25dp"
+                    android:layout_gravity="center"
+                    android:text="간편히 온라인으로 예약하고\n내 몸 측정하기!"/>
         </LinearLayout>
 
             <LinearLayout
@@ -51,7 +51,7 @@
                 android:layout_weight="1">
 
                 <Button
-                    android:id="@+id/button_fragment_sportTitle1"
+                    android:id="@+id/btn_sport_firstToDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -82,7 +82,7 @@
                 android:layout_weight="1">
 
                 <Button
-                    android:id="@+id/button_fragment_sportTitle2"
+                    android:id="@+id/btn_sport_secondToDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -113,7 +113,7 @@
                 android:layout_weight="1">
 
                 <Button
-                    android:id="@+id/button_fragment_sportTitle3"
+                    android:id="@+id/btn_sport_thirdToDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -132,12 +132,6 @@
                     android:text="선수들의 경기력을 향상하고 스포츠 과학을 지원합니다" />
 
             </LinearLayout>
-
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"></LinearLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
