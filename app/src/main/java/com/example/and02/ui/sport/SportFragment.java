@@ -1,8 +1,6 @@
 package com.example.and02.ui.sport;
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,43 +10,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.and02.MainActivity;
 import com.example.and02.R;
-import com.example.and02.ui.common.ListModel;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.ornach.nobobutton.NoboButton;
-import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SportFragment extends Fragment {
-
-//    private RequestQueue requestQueue;
-
-//    private String imageUrl = "http://www.kbostat.co.kr/resource/static-file";
+    private Button btnFirstTitle;
+    private Button btnSecondTitle;
+    private Button btnThirdTitle;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,6 +63,35 @@ public class SportFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sport, container, false);
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        this.btnFirstTitle = view.findViewById(R.id.btn_sport_firstToDetail);
+        this.btnFirstTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.navigation_sport_reservation);
+            }
+        });
+
+        this.btnSecondTitle = view.findViewById(R.id.btn_sport_secondToDetail);
+        this.btnSecondTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.navigation_sport_reservation);
+            }
+        });
+
+        this.btnThirdTitle = view.findViewById(R.id.btn_sport_thirdToDetail);
+        this.btnThirdTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.navigation_sport_reservation);
+            }
+        });
     }
 
     public void setButton(NoboButton button) {

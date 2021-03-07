@@ -12,9 +12,6 @@
             android:label="홈"
             tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_home_to_tracker"
-            app:destination="@id/navigation_sport" />
-        <action
             android:id="@+id/action_home_to_facilityDetail"
             app:destination="@id/facilityDetailFragment" />
         <action
@@ -34,12 +31,11 @@
         android:id="@+id/dashboardFragment"
         android:name="com.example.and02.ui.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-    <fragment
-        android:id="@+id/navigation_sport"
-        android:name="com.example.and02.ui.sport.SportFragment"
-        android:label="fragment_sport"
-        tools:layout="@layout/fragment_sport" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action android:id="@+id/action_dashboardFragment_to_navigation_sport_reservation"
+                app:destination="@id/navigation_sport_reservation"/>
+    </fragment>
+
     <fragment
         android:id="@+id/navigation_team"
         android:name="com.example.and02.ui.team.TeamFragment"
@@ -153,6 +149,24 @@
         android:id="@+id/teamStoryFragment"
         android:name="com.example.and02.ui.team.TeamStoryFragment"
         android:label="TeamStoryFragment" />
+
+    <fragment
+            android:id="@+id/navigation_sport"
+            android:name="com.example.and02.ui.sport.SportFragment"
+            android:label="스포츠재활"
+            tools:layout="@layout/fragment_sport" />
+
+    <fragment
+            android:id="@+id/navigation_sport_detail"
+            android:name="com.example.and02.ui.sport.SportDetailFragment"
+            android:label="스포츠재활 상세"
+            tools:layout="@layout/fragment_sport_detail" />
+
+    <fragment
+            android:id="@+id/navigation_sport_reservation"
+            android:name="com.example.and02.ui.sport.SportReservationFragment"
+            android:label="예약하기"
+            tools:layout="@layout/fragment_sport_reservation" />
 
 
 </navigation>
