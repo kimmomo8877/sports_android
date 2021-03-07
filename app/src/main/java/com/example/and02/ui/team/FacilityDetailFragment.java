@@ -58,7 +58,6 @@ public class FacilityDetailFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("onCreated", "inside on activity created");
-        // Here notify the fragment that it should participate in options menu handling.
         setHasOptionsMenu(true);
     }
 
@@ -66,7 +65,7 @@ public class FacilityDetailFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar.
         menu.clear();
-        inflater.inflate(R.menu.home_nav_menu, menu);
+        inflater.inflate(R.menu.facilitydetail_nav_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -75,7 +74,7 @@ public class FacilityDetailFragment extends Fragment {
         // handle item selection
         Log.i("onOptionsItemSelected","yes");
         switch (item.getItemId()) {
-            case R.id.navigation_home:
+            case R.id.home:
                 Log.i("onOptionsItemSelected","back");
                 getActivity().onBackPressed();
                 return true;
@@ -84,12 +83,15 @@ public class FacilityDetailFragment extends Fragment {
                 Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
                 return true;
             default:
+                Log.i("itemId", String.valueOf(item.getItemId()));
+                getActivity().onBackPressed();
                 return super.onOptionsItemSelected(item);
         }
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("시설상세");
         View view = inflater.inflate(R.layout.fragment_facilitydetail, container, false);
 
         final InfraModel infraModel = (InfraModel) getArguments().getSerializable("infraModel");
@@ -137,28 +139,42 @@ public class FacilityDetailFragment extends Fragment {
         setButton((btnSave));
 
         TextView tvTitle = view.findViewById(R.id.textView_facilityDetail_title);
-        tvTitle.setText(infraModel.getName());
+        if (!infraModel.getName().equals("null")) {
+            tvTitle.setText(infraModel.getName());
+        }
 
         TextView tvAddress = view.findViewById(R.id.textView_facilityDetail_adderssDetail);
-        tvAddress.setText(infraModel.getAddress());
+        if (!infraModel.getAddress().equals("null")) {
+            tvAddress.setText(infraModel.getAddress());
+        }
 
         TextView tvHomepage = view.findViewById(R.id.textView_facilityDetail_homepageDetail);
-        tvHomepage.setText(infraModel.getHomepageUrl());
+        if (!infraModel.getHomepageUrl().equals("null")) {
+            tvHomepage.setText(infraModel.getHomepageUrl());
+        }
 
         TextView tvPhone = view.findViewById(R.id.textView_facilityDetail_phoneDetail);
-        tvPhone.setText(infraModel.getPhoneNumber());
+        if (!infraModel.getPhoneNumber().equals("null")) {
+            tvPhone.setText(infraModel.getPhoneNumber());
+        }
 
         TextView tvSport = view.findViewById(R.id.textView_facilityDetail_sportDetail);
-        tvSport.setText(infraModel.getFacilityDescription());
-
+        if (!infraModel.getFacilityDescription().equals("null")) {
+            tvSport.setText(infraModel.getFacilityDescription());
+        }
         TextView tvFacility = view.findViewById(R.id.textView_facilityDetail_facilityDetail);
-        tvFacility.setText(infraModel.getEquipmentDescription());
-
+        if (!infraModel.getEquipmentDescription().equals("null")) {
+            tvFacility.setText(infraModel.getEquipmentDescription());
+        }
         TextView tvEtc = view.findViewById(R.id.textView_facilityDetail_etcDetail);
-        tvEtc.setText(infraModel.getEtcDescription());
+        if (!infraModel.getEtcDescription().equals("null")) {
+            tvEtc.setText(infraModel.getEtcDescription());
+        }
 
         TextView tvLocation = view.findViewById(R.id.textView_facilityDetail_locationDetail);
-        tvLocation.setText(infraModel.getAddress());
+        if (!infraModel.getAddress().equals("null")) {
+            tvLocation.setText(infraModel.getAddress());
+        }
 
 
 //        requestQueue = Volley.newRequestQueue(view.getContext());

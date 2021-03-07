@@ -37,12 +37,12 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamStoryFragment extends Fragment {
+public class TeamNoticeFragment extends Fragment {
 
-    private RecyclerView teamStoryRecyclerView;
+    private RecyclerView teamNoticeRecyclerView;
     private RequestQueue requestQueue;
 
-    private TeamStoryAdapter teamStoryAdapter;
+    private BoardAdapter teamNoticeAdapter;
     private String imageUrl = "http://www.kbostat.co.kr/resource/static-file";
 
     @Override
@@ -56,8 +56,8 @@ public class TeamStoryFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar.
 
-        inflater.inflate(R.menu.teamstory_nav_menu, menu);
-        MenuItem searchItem = menu.findItem(R.id.item_menu_teamStory_search);
+        inflater.inflate(R.menu.teamnotice_nav_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.item_menu_teamNotice_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -67,7 +67,7 @@ public class TeamStoryFragment extends Fragment {
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                teamStoryAdapter.getFilter().filter(newText);
+                teamNoticeAdapter.getFilter().filter(newText);
                 return false;
             }
         });
@@ -81,7 +81,7 @@ public class TeamStoryFragment extends Fragment {
             case R.id.home_tracker_button:
                 Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
                 return true;
-            case R.id.item_menu_teamStory_search:
+            case R.id.item_menu_teamNotice_search:
                 return true;
             default:
                 getActivity().onBackPressed();
@@ -91,8 +91,8 @@ public class TeamStoryFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("팀스토리");
-        View view = inflater.inflate(R.layout.fragment_teamstory, container, false);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("팀공지사항");
+        View view = inflater.inflate(R.layout.fragment_teamnotice, container, false);
 
         final TeamModel teamModel = (TeamModel) getArguments().getSerializable("teamModel");
 
@@ -100,16 +100,16 @@ public class TeamStoryFragment extends Fragment {
 
         requestQueue = Volley.newRequestQueue(view.getContext());
 
-        teamStoryRecyclerView = view.findViewById(R.id.recycler_teamStory);
-        teamStoryRecyclerView.setHasFixedSize(true);
-        teamStoryRecyclerView.setLayoutManager(mLayoutManager);
-        doHttpRequestTeamStory(teamModel);
+        teamNoticeRecyclerView = view.findViewById(R.id.recycler_teamNotice);
+        teamNoticeRecyclerView.setHasFixedSize(true);
+        teamNoticeRecyclerView.setLayoutManager(mLayoutManager);
+        doHttpRequestNoticeBoard(teamModel);
 
         return view;
     }
 
-    private void doHttpRequestTeamStory(TeamModel teamModel) {
-        String url = "http://www.kbostat.co.kr/resource/board/team/" + teamModel.getTeamNo() + "/34/content";
+    private void doHttpRequestNoticeBoard(TeamModel teamModel) {
+        String url = "http://www.kbostat.co.kr/resource/board/team/" + teamModel.getTeamNo() + "/1/content";
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -126,7 +126,7 @@ public class TeamStoryFragment extends Fragment {
                     JSONArray root = new JSONArray(response);
                     for (int i = 0; i < root.length(); i++) {
                         JSONObject data = root.getJSONObject(i);
-                        if (data.getInt("boardNo") != 34) {
+                        if (data.getInt("boardNo") != 1) {
                             continue;
                         }
                         if (setBoardModel(data) != null) {
@@ -137,11 +137,11 @@ public class TeamStoryFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                teamStoryAdapter = new TeamStoryAdapter(result);
+                teamNoticeAdapter = new BoardAdapter(result);
                 List<BoardModel> result_orig = new ArrayList<>();
                 result_orig.addAll(result);
-                teamStoryAdapter.setBoardModelList_orig(result_orig);
-                teamStoryRecyclerView.setAdapter(teamStoryAdapter);
+                teamNoticeAdapter.setBoardModelList_orig(result_orig);
+                teamNoticeRecyclerView.setAdapter(teamNoticeAdapter);
                 Log.i("TEST", response);
 
             }

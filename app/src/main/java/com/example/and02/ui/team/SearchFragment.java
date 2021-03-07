@@ -56,13 +56,11 @@ public class SearchFragment  extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("onCreated", "inside on activity created");
-        // Here notify the fragment that it should participate in options menu handling.
         setHasOptionsMenu(true);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // Inflate the menu; this adds items to the action bar.
 
         inflater.inflate(R.menu.search_nav_menu, menu);
         MenuItem searchItem = menu.findItem(R.id.item_menu_search);
@@ -89,16 +87,17 @@ public class SearchFragment  extends Fragment {
             case R.id.home_tracker_button:
                 Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
                 return true;
-            case R.id.button_tracker_action:
-                Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
+            case R.id.item_menu_search:
                 return true;
             default:
+                getActivity().onBackPressed();
                 return super.onOptionsItemSelected(item);
         }
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+                             ViewGroup container, Bundle savedInstanceState){
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("검색");
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());

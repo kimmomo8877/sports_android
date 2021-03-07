@@ -102,13 +102,16 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
             }
             FilterResults results = new FilterResults();
             results.values = filteredList;
+            results.count  = filteredList.size();
             return results;
         }
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            favoriteModelList.clear();
-            favoriteModelList.addAll((List) results.values);
-            notifyDataSetChanged();
+            if (results.count > 0) {
+                favoriteModelList.clear();
+                favoriteModelList.addAll((List) results.values);
+                notifyDataSetChanged();
+            }
         }
     };
 

@@ -3,6 +3,8 @@ package com.example.and02.ui.team;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,9 +15,10 @@ import com.example.and02.R;
 import com.example.and02.ui.common.BoardModel;
 import com.example.and02.ui.common.ScheduleModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class TeamScheduleAdapter extends RecyclerView.Adapter<TeamScheduleAdapter.TeamScheduleViewHolder>  {
+public class TeamScheduleAdapter extends RecyclerView.Adapter<TeamScheduleAdapter.TeamScheduleViewHolder> implements Filterable {
     private List<ScheduleModel> scheduleModelList;
     private List<ScheduleModel> scheduleModelList_orig;
 
@@ -82,6 +85,54 @@ public class TeamScheduleAdapter extends RecyclerView.Adapter<TeamScheduleAdapte
 
     public List<ScheduleModel> getScheduleModelList() {
         return scheduleModelList;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return dataFilter;
+    }
+
+    private Filter dataFilter = new Filter() {
+        //Automatic on background thread
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            // 삭제할 할 경우 로직
+            List<ScheduleModel> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(scheduleModelList_orig);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (ScheduleModel item : scheduleModelList_orig) {
+                    if (item.getTitle().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            results.count  = filteredList.size();
+            return results;
+        }
+
+        //Automatic on UI thread
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            if (results.count > 0) {
+                scheduleModelList.clear();
+                scheduleModelList.addAll((List) results.values);
+                notifyDataSetChanged();
+            }
+        }
+
+    };
+
+    public List<ScheduleModel> getScheduleModelList_orig() {
+        return scheduleModelList_orig;
+    }
+
+    public void setScheduleModelList_orig(List<ScheduleModel> scheduleModelList_orig) {
+        this.scheduleModelList_orig = scheduleModelList_orig;
     }
 
 

@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_home_to_facilityDetail"
             app:destination="@id/facilityDetailFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_tracker_main"
+            app:destination="@id/navigation_tracker_main" />
 
     </fragment>
     <fragment
@@ -84,6 +87,9 @@
         <action
             android:id="@+id/action_facilityMapFragment_to_facilityDetailFragment"
             app:destination="@id/facilityDetailFragment" />
+        <action
+            android:id="@+id/action_facilityMapFragment_to_reservationFragment"
+            app:destination="@id/reservationFragment" />
     </fragment>
 
     <fragment android:id="@+id/navigation_tracker_config"
@@ -117,7 +123,36 @@
     <fragment
         android:id="@+id/teamDetailFragment"
         android:name="com.example.and02.ui.team.TeamDetailFragment"
-        android:label="TeamDetailFragment" />
+        android:label="TeamDetailFragment" >
+        <action
+            android:id="@+id/action_teamDetailFragment_to_teamScheduleFragment"
+            app:destination="@id/teamScheduleFragment" />
+        <action
+            android:id="@+id/action_teamDetailFragment_to_teamNoticeFragment"
+            app:destination="@id/teamNoticeFragment" />
+        <action
+            android:id="@+id/action_teamDetailFragment_to_teamReservationFragment"
+            app:destination="@id/teamReservationFragment" />
+        <action
+            android:id="@+id/action_teamDetailFragment_to_teamStoryFragment"
+            app:destination="@id/teamStoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamScheduleFragment"
+        android:name="com.example.and02.ui.team.TeamScheduleFragment"
+        android:label="TeamScheduleFragment" />
+    <fragment
+        android:id="@+id/teamNoticeFragment"
+        android:name="com.example.and02.ui.team.TeamNoticeFragment"
+        android:label="TeamNoticeFragment" />
+    <fragment
+        android:id="@+id/teamReservationFragment"
+        android:name="com.example.and02.ui.team.TeamReservationFragment"
+        android:label="TeamReservationFragment" />
+    <fragment
+        android:id="@+id/teamStoryFragment"
+        android:name="com.example.and02.ui.team.TeamStoryFragment"
+        android:label="TeamStoryFragment" />
 
 
 </navigation>

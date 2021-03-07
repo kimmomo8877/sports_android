@@ -1,5 +1,6 @@
 package com.example.and02.ui.team;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +41,7 @@ import com.example.and02.ui.common.ScheduleModel;
 import com.example.and02.ui.common.SharedUserData;
 import com.example.and02.ui.home.HomeAdapter;
 import com.example.and02.ui.home.InfraModel;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
 import com.ornach.nobobutton.NoboButton;
 import com.squareup.picasso.Picasso;
@@ -65,6 +68,7 @@ public class TeamDetailFragment extends Fragment {
 
     private RequestQueue requestQueue;
     private MainActivity mainActivity;
+    private View view;
 
     //    private RequestQueue requestQueue;
     private String imageUrl = "http://www.kbostat.co.kr/resource/static-file";
@@ -77,7 +81,6 @@ public class TeamDetailFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // Inflate the menu; this adds items to the action bar.
         menu.clear();
         inflater.inflate(R.menu.teamdetail_nav_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
@@ -87,6 +90,8 @@ public class TeamDetailFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle item selection
         Log.i("onOptionsItemSelected", "yes");
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("teamModel", (TeamModel) getArguments().getSerializable("teamModel"));
         switch (item.getItemId()) {
             case R.id.navigation_home:
                 Log.i("onOptionsItemSelected", "back");
@@ -95,31 +100,43 @@ public class TeamDetailFragment extends Fragment {
             case R.id.action_teamDetail_home:
                 Log.i("onOptionsItemSelected", "tracker");
                 Toast.makeText(getActivity(), "Click Home", Toast.LENGTH_SHORT).show();
+//                Navigation.findNavController(view).navigate(R.id.action_teamDetailFragment_to_, bundle);
                 return true;
             case R.id.action_teamDetail_notice:
                 Log.i("onOptionsItemSelected", "tracker");
                 Toast.makeText(getActivity(), "Click Notice", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.action_teamDetailFragment_to_teamNoticeFragment, bundle);
+                return true;
+            case R.id.action_teamDetail_reservation:
+                Log.i("onOptionsItemSelected", "tracker");
+                Toast.makeText(getActivity(), "Click Notice", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.action_teamDetailFragment_to_teamReservationFragment, bundle);
                 return true;
             case R.id.action_teamDetail_schedule:
                 Log.i("onOptionsItemSelected", "tracker");
                 Toast.makeText(getActivity(), "Click Schedule", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.action_teamDetailFragment_to_teamScheduleFragment, bundle);
                 return true;
             case R.id.action_teamDetail_story:
                 Log.i("onOptionsItemSelected", "tracker");
                 Toast.makeText(getActivity(), "Click Story", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.action_teamDetailFragment_to_teamStoryFragment, bundle);
                 return true;
             case R.id.action_teamDetail_picture:
                 Log.i("onOptionsItemSelected", "tracker");
                 Toast.makeText(getActivity(), "Click Picture", Toast.LENGTH_SHORT).show();
+//                Navigation.findNavController(view).navigate(R.id.action_teamDetailFragment_to_teamScheduleFragment, bundle);
                 return true;
             default:
+                getActivity().onBackPressed();
                 return super.onOptionsItemSelected(item);
         }
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_teamdetail, container, false);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("팀상세");
+        view = inflater.inflate(R.layout.fragment_teamdetail, container, false);
 
         final TeamModel teamModel = (TeamModel) getArguments().getSerializable("teamModel");
         requestQueue = Volley.newRequestQueue(view.getContext());
@@ -160,6 +177,15 @@ public class TeamDetailFragment extends Fragment {
         teamStoryRecyclerView.setLayoutManager(mLayoutManager4);
         teamStoryRecyclerView.setLayoutManager(horizontalLayout4);
         doHttpRequestTeamStory(teamModel);
+
+        SimpleDraweeView btnImageMain = view.findViewById(R.id.imageView_teamDetail_main);
+        if (teamModel.getAttachFile() != null ) {
+            Uri uri = Uri.parse(teamModel.getAttachFile());
+            btnImageMain.setImageURI(uri);
+        }
+
+        TextView textViewTitle = view.findViewById((R.id.textView_teamDetail_title));
+        textViewTitle.setText(teamModel.getName());
 
         TextView textViewBelong = view.findViewById((R.id.textView_teamDetail_belongDetail));
         textViewBelong.setText(teamModel.getBelongCode().getName());
@@ -206,7 +232,7 @@ public class TeamDetailFragment extends Fragment {
                 boardAdapter = new BoardAdapter(result);
                 List<BoardModel> result_orig = new ArrayList<>();
                 result_orig.addAll(result);
-//                boardAdapter.setBoardModelList_orig(result_orig);
+                boardAdapter.setBoardModelList_orig(result_orig);
                 boardRecyclerView.setAdapter(boardAdapter);
                 Log.i("TEST", response);
 
@@ -247,9 +273,6 @@ public class TeamDetailFragment extends Fragment {
                         if (infraData.getString("name") != null ) {
                             infraModel.setName(infraData.getString("name"));
                         }
-//                        if (infraData.getString("address") != null) {
-//                            infraModel.setAddress(infraData.getString("address"));
-//                        }
                         infraModel.setAttachFiles(infraData.getJSONArray("attachFiles"));
                         if (infraModel.getAttachFiles() != null) {
                             if (infraModel.getAttachFiles().length() > 0) {
@@ -263,6 +286,7 @@ public class TeamDetailFragment extends Fragment {
 
                         ReservationModel reservationModel = new ReservationModel();
                         reservationModel.setInfra(infraModel);
+                        reservationModel.setRegisteDate(data.getString("registeDate"));
 
                         result.add(reservationModel);
                     }
@@ -273,7 +297,7 @@ public class TeamDetailFragment extends Fragment {
                 reservationAdapter = new ReservationAdapter(result);
                 List<ReservationModel> result_orig = new ArrayList<>();
                 result_orig.addAll(result);
-//                boardAdapter.setBoardModelList_orig(result_orig);
+                reservationAdapter.setReservationModelList_orig(result_orig);
                 reservationRecyclerView.setAdapter(reservationAdapter);
                 Log.i("TEST", response);
 
@@ -320,7 +344,7 @@ public class TeamDetailFragment extends Fragment {
                 teamScheduleAdapter = new TeamScheduleAdapter(result);
                 List<ScheduleModel> result_orig = new ArrayList<>();
                 result_orig.addAll(result);
-//                boardAdapter.setBoardModelList_orig(result_orig);
+                teamScheduleAdapter.setScheduleModelList_orig(result_orig);
                 teamScheduleRecyclerView.setAdapter(teamScheduleAdapter);
                 Log.i("TEST", response);
 
@@ -369,7 +393,7 @@ public class TeamDetailFragment extends Fragment {
                 teamStoryAdapter = new TeamStoryAdapter(result);
                 List<BoardModel> result_orig = new ArrayList<>();
                 result_orig.addAll(result);
-//                boardAdapter.setBoardModelList_orig(result_orig);
+                teamStoryAdapter.setBoardModelList_orig(result_orig);
                 teamStoryRecyclerView.setAdapter(teamStoryAdapter);
                 Log.i("TEST", response);
 
@@ -399,32 +423,6 @@ public class TeamDetailFragment extends Fragment {
         boardWriterModel.setName(writerData.getString("name"));
         boardWriterModel.setRegisteDate(writerData.getString("registeDate"));
         boardModel.setWriter(boardWriterModel);
-
-//        JSONObject genderCode = data.getJSONObject("genderCode");
-//        CodeModel genderModel = new CodeModel();
-//        genderModel.setName(genderCode.getString("name"));
-//        teamModel.setGenderCode(genderModel);
-//
-//        JSONObject regionCode = data.getJSONObject("regionCode");
-//        CodeModel regionModel = new CodeModel();
-//        regionModel.setName(regionCode.getString("name"));
-//        teamModel.setRegionCode(regionModel);
-//
-//        JSONObject sportCode = data.getJSONObject("sportCode");
-//        CodeModel sportModel = new CodeModel();
-//        sportModel.setName(sportCode.getString("name"));
-//        teamModel.setSportCode(sportModel);
-//
-//        teamModel.setTeamNo(data.getString("teamNo"));
-//        teamModel.setName(data.getString("name"));
-//        teamModel.setPhoneNumber(data.getString("phoneNumber"));
-//        teamModel.setHomepageUrl(data.getString("homepageUrl"));
-//        teamModel.setRegisteApprove(data.getBoolean("registeApprove"));
-//        teamModel.setClassificationCodeId(data.getInt("classificationCodeId"));
-//        teamModel.setBelongedCodeId(data.getInt("belongedCodeId"));
-//        teamModel.setGenderCodeId(data.getInt("genderCodeId"));
-//        teamModel.setRegionCodeId(data.getInt("regionCodeId"));
-//        teamModel.setSportCodeId(data.getInt("sportCodeId"));
 
         boardModel.setAttachFiles(data.getJSONArray("attachFiles"));
         if (boardModel.getAttachFiles() != null) {

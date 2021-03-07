@@ -1,6 +1,8 @@
 package com.example.and02.ui.team;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +29,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.and02.LoginActivity;
+import com.example.and02.MainActivity;
 import com.example.and02.R;
+import com.example.and02.ui.common.SharedUserData;
 import com.example.and02.ui.home.InfraModel;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -51,12 +56,12 @@ import java.util.List;
 public class FacilityMapFragment extends Fragment implements OnMapReadyCallback {
 
     private MapView mapView;
+    private InfraModel infraModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("onCreated", "inside on activity created");
-        // Here notify the fragment that it should participate in options menu handling.
         setHasOptionsMenu(true);
     }
 
@@ -64,7 +69,7 @@ public class FacilityMapFragment extends Fragment implements OnMapReadyCallback 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar.
         menu.clear();
-        inflater.inflate(R.menu.home_nav_menu, menu);
+        inflater.inflate(R.menu.facilitymap_nav_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
 
     }
@@ -77,19 +82,18 @@ public class FacilityMapFragment extends Fragment implements OnMapReadyCallback 
             case R.id.home_tracker_button:
                 Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
                 return true;
-            case R.id.button_tracker_action:
-                Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
-                return true;
             default:
+                getActivity().onBackPressed();
                 return super.onOptionsItemSelected(item);
         }
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("시설지도검색");
         View view = inflater.inflate(R.layout.fragment_facilitymap, container, false);
 
-        final InfraModel infraModel = (InfraModel) getArguments().getSerializable("infraModel");
+        infraModel = (InfraModel) getArguments().getSerializable("infraModel");
 
         /*Fragment내에서는 mapView로 지도를 실행*/
         mapView = (MapView) view.findViewById(R.id.map_fragment_facility);
@@ -109,16 +113,40 @@ public class FacilityMapFragment extends Fragment implements OnMapReadyCallback 
         });
 //        setButton(btnTitle);
 
+        NoboButton btnResv = view.findViewById(R.id.button_facilityMap_reservation);
+        btnResv.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("reservationButton", "reservation button click");
+                Context context = getContext();
+                if (SharedUserData.isLogin(context)) {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("infraModel", infraModel);
+                    Navigation.findNavController(view).navigate(R.id.action_facilityMapFragment_to_reservationFragment, bundle);
+//                    SharedUserData.logout(context);
+//                    btnLogin.setText("로그인");
+//                    Toast.makeText(getActivity(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        }) ;
+        setButton(btnResv);
         NoboButton btnPhone = view.findViewById(R.id.button_facilityMap_phone);
         btnPhone.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("infraModel", infraModel);
-                Navigation.findNavController(view).navigate(R.id.action_facilityMapFragment_to_facilityDetailFragment, bundle);
+                String tel = "tel:" + infraModel.getPhoneNumber();
+                Log.i("reservationButton", "call button click");
+                startActivity(new Intent("android.intent.action.CALL",Uri.parse(tel)));
             }
         }) ;
-
+        setButton(btnPhone);
+        NoboButton btnMap = view.findViewById(R.id.button_facilityMap_map);
+        setButton((btnMap));
+        NoboButton btnSave = view.findViewById(R.id.button_facilityMap_save);
+        setButton((btnSave));
 
         return view;
     }
@@ -127,16 +155,37 @@ public class FacilityMapFragment extends Fragment implements OnMapReadyCallback 
     public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(this.getActivity());
 
+        CameraUpdate cameraUpdate;
 // Updates the location and zoom of the MapView
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(35.141233, 126.925594), 14);
+        if (infraModel.getLatitude() == 0 || infraModel.getLongitude() == 0) {
+            cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(35.2599366728497, 128.5051723980738), 14);
+            googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(35.2599366728497, 128.5051723980738))
+                    .title("마산대학교"));
+        } else {
+            cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(infraModel.getLatitude(), infraModel.getLongitude()), 14);
+            googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(infraModel.getLatitude(), infraModel.getLongitude()))
+                    .title(infraModel.getName()));
+        }
 
         googleMap.animateCamera(cameraUpdate);
 
-        googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(35.141233, 126.925594))
-                .title("루프리코리아"));
+
     }
 
+    public void setButton(NoboButton button) {
+        button.setTextColor(Color.BLACK);
+//        button.setAllCaps(true);
+//        button.setIconSize(5);
+//        button.setFontIcon("\uf138");
+        button.setIconPosition(NoboButton.POSITION_TOP);
+        button.setBackgroundColor(Color.WHITE);
+        button.setFocusColor(Color.GRAY);
+        button.setBorderColor(Color.BLACK);
+        button.setBorderWidth(2);
+        button.setRadius(10);
+    }
 
 //    @Override
 //    public void onMapReady(final GoogleMap googleMap) {

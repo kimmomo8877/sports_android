@@ -1,5 +1,6 @@
 package com.example.and02.ui.team;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -62,9 +63,6 @@ public class TeamFragment extends Fragment {
     private TeamAdapter facilityAdapter;
     private ListAdapter facilityMenuAdapter;
     private List<ListModel> facilityMenuResult = new ArrayList<>();
-//    private TeamAdapter teamStoryAdapter;
-//    private ListAdapter MenuAdapter;
-//    private List<ListModel> foodMenuResult = new ArrayList<>();
 
     private MainActivity mainActivity;
     private String imageUrl = "http://www.kbostat.co.kr/resource/static-file";
@@ -73,17 +71,16 @@ public class TeamFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("onCreated", "inside on activity created");
-        // Here notify the fragment that it should participate in options menu handling.
+
+
         setHasOptionsMenu(true);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // Inflate the menu; this adds items to the action bar.
         menu.clear();
-        inflater.inflate(R.menu.home_nav_menu, menu);
+        inflater.inflate(R.menu.team_nav_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
-
     }
 
     @Override
@@ -104,6 +101,7 @@ public class TeamFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("전지훈련팀");
         View view = inflater.inflate(R.layout.fragment_team, container, false);
 
 
@@ -113,7 +111,6 @@ public class TeamFragment extends Fragment {
             public void onClick(View view) {
 //                String tel = "tel:" + infraModel.getPhoneNumber();
                 Log.i("searchButton", "search button click");
-//                startActivity(new Intent("android.intent.action.CALL", Uri.parse(tel)));
                 Navigation.findNavController(view).navigate(R.id.action_navigation_team_to_searchFragment);
             }
         }) ;

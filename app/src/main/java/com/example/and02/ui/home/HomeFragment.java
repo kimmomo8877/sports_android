@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.RequestQueue;
@@ -57,6 +58,7 @@ public class HomeFragment extends Fragment {
 
   private MainActivity mainActivity;
   private String imageUrl = "http://www.kbostat.co.kr/resource/static-file";
+  private View view;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,8 +71,8 @@ public class HomeFragment extends Fragment {
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     // Inflate the menu; this adds items to the action bar.
-//    super.onCreateOptionsMenu(menu, inflater);
-//    menu.clear();
+    super.onCreateOptionsMenu(menu, inflater);
+    menu.clear();
     inflater.inflate(R.menu.home_nav_menu, menu);
 
   }
@@ -82,9 +84,7 @@ public class HomeFragment extends Fragment {
     switch (item.getItemId()) {
       case R.id.home_tracker_button:
         Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
-        return true;
-      case R.id.button_tracker_action:
-        Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
+        Navigation.findNavController(view).navigate(R.id.action_navigation_home_to_navigation_tracker_main);
         return true;
       default:
          return super.onOptionsItemSelected(item);
@@ -106,7 +106,8 @@ public class HomeFragment extends Fragment {
 
   public View onCreateView(@NonNull LayoutInflater inflater,
                            ViewGroup container, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_home, container, false);
+    ((MainActivity) getActivity()).getSupportActionBar().setTitle("홈");
+    view = inflater.inflate(R.layout.fragment_home, container, false);
 
     RecyclerView.LayoutManager mLayoutManager0 = new LinearLayoutManager(view.getContext());
     RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(view.getContext());

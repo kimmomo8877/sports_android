@@ -1,5 +1,6 @@
 package com.example.and02.ui.team;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,13 +26,14 @@ public class TeamDetailAdapter extends RecyclerView.Adapter<TeamDetailAdapter.Te
 
     public class TeamDetailViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewName;
+
         private final SimpleDraweeView imageViewImage;
 
         public TeamDetailViewHolder(@NonNull final View itemView) {
             super(itemView);
 
-            this.imageViewImage = itemView.findViewById(R.id.imageView_searchTeam_image);
-            this.textViewName = itemView.findViewById(R.id.textView_searchTeam_name);
+            this.imageViewImage = itemView.findViewById(R.id.imageView_teamDetail_main);
+            this.textViewName = itemView.findViewById(R.id.textView_teamDetail_title);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

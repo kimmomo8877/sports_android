@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="10dp"
     android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,48 +17,21 @@
                     android:id="@+id/button_searchResult_facility"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:text="시설" />
                 <Button
                     android:id="@+id/button_searchResult_team"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:text="스포츠" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
 
-        <com.ornach.nobobutton.NoboButton
-            android:id="@+id/button_searchResult_kind"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:nb_drawableResource="@drawable/ic_phone"
-            app:nb_backgroundColor="#EF3D56"
-            app:nb_borderColor="#FFFFFF"
-            app:nb_borderWidth="2dp"
-            app:nb_radius="5dp"
-            app:nb_text="종목"
-            app:nb_textColor="#FFF"
-            app:nb_focusColor="#B83CC3"/>
-
-        <com.ornach.nobobutton.NoboButton
-            android:id="@+id/button_searchResult_region"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:nb_drawableResource="@drawable/ic_phone"
-            app:nb_backgroundColor="#EF3D56"
-            app:nb_borderColor="#FFFFFF"
-            app:nb_borderWidth="2dp"
-            app:nb_radius="5dp"
-            app:nb_text="지역"
-            app:nb_textColor="#FFF"
-            app:nb_focusColor="#B83CC3"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,3 +44,45 @@
     </LinearLayout>
 
 </LinearLayout>
+
+
+
+<!--<LinearLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="0dp"-->
+<!--android:layout_marginLeft="20dp"-->
+<!--android:layout_marginBottom="20dp"-->
+<!--android:layout_weight="1">-->
+
+<!--<com.ornach.nobobutton.NoboButton-->
+<!--    android:id="@+id/button_searchResult_kind"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:textStyle="bold"-->
+<!--    android:padding="10dp"-->
+<!--    app:nb_drawableResource="@drawable/ic_chevron_down"-->
+<!--    app:nb_backgroundColor="@android:color/transparent"-->
+<!--    app:nb_borderColor="#000000"-->
+<!--    app:nb_borderWidth="1dp"-->
+<!--    app:nb_radius="5dp"-->
+<!--    app:nb_text="종목"-->
+<!--    app:nb_textColor="#000000"-->
+<!--    app:nb_focusColor="#B83CC3"/>-->
+
+<!--<com.ornach.nobobutton.NoboButton-->
+<!--    android:id="@+id/button_searchResult_region"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginLeft="10dp"-->
+<!--    android:textStyle="bold"-->
+<!--    android:padding="10dp"-->
+<!--    app:nb_drawableResource="@drawable/ic_chevron_down"-->
+<!--    app:nb_backgroundColor="@android:color/transparent"-->
+<!--    app:nb_borderColor="#000000"-->
+<!--    app:nb_borderWidth="1dp"-->
+<!--    app:nb_radius="5dp"-->
+<!--    app:nb_text="지역"-->
+<!--    app:nb_textColor="#000000"-->
+<!--    app:nb_focusColor="#B83CC3"/>-->
+
+<!--</LinearLayout>-->

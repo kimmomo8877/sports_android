@@ -105,15 +105,18 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             }
             FilterResults results = new FilterResults();
             results.values = filteredList;
+            results.count  = filteredList.size();
             return results;
         }
 
         //Automatic on UI thread
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            searchModelList.clear();
-            searchModelList.addAll((List) results.values);
-            notifyDataSetChanged();
+            if (results.count > 0) {
+                searchModelList.clear();
+                searchModelList.addAll((List) results.values);
+                notifyDataSetChanged();
+            }
         }
     };
 

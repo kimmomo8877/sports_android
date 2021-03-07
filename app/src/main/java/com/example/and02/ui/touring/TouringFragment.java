@@ -79,6 +79,7 @@ public class TouringFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("투어링");
         super.onCreate(savedInstanceState);
         Log.i("onCreated", "inside on activity created");
         // Here notify the fragment that it should participate in options menu handling.
@@ -89,7 +90,7 @@ public class TouringFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar.
         menu.clear();
-        inflater.inflate(R.menu.home_nav_menu, menu);
+        inflater.inflate(R.menu.touring_nav_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
 
     }
@@ -112,6 +113,7 @@ public class TouringFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("투어링");
         View view = inflater.inflate(R.layout.fragment_touring, container, false);
 
 

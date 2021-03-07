@@ -33,6 +33,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.and02.MainActivity;
 import com.example.and02.R;
 import com.example.and02.ui.common.SharedUserData;
 import com.example.and02.ui.home.InfraModel;
@@ -88,6 +89,7 @@ public class ReservationFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("시설예약");
         Log.i("onCreated", "inside on activity created");
         this.requestQueue = Volley.newRequestQueue(getContext());
         setHasOptionsMenu(true);
@@ -97,7 +99,7 @@ public class ReservationFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar.
         menu.clear();
-        inflater.inflate(R.menu.home_nav_menu, menu);
+        inflater.inflate(R.menu.reservation_nav_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -115,12 +117,14 @@ public class ReservationFragment extends Fragment {
                 Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
                 return true;
             default:
+                getActivity().onBackPressed();
                 return super.onOptionsItemSelected(item);
         }
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("시설예약");
         View view = inflater.inflate(R.layout.fragment_reservation, container, false);
 
         final InfraModel infraModel = (InfraModel) getArguments().getSerializable("infraModel");

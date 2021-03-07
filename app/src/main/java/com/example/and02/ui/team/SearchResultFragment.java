@@ -1,5 +1,6 @@
 package com.example.and02.ui.team;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,11 +9,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.and02.MainActivity;
 import com.example.and02.R;
 import com.example.and02.ui.common.CodeModel;
 import com.example.and02.ui.common.UserModel;
@@ -52,16 +56,29 @@ public class SearchResultFragment extends Fragment  {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("onCreated", "inside on activity created");
-        // Here notify the fragment that it should participate in options menu handling.
         setHasOptionsMenu(true);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar.
-        menu.clear();
         inflater.inflate(R.menu.searchresult_nav_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
+        MenuItem searchItem = menu.findItem(R.id.item_menu_searchResult);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if ( searchFacilityRecyclerView.getAdapter() != null ) {
+                    searchFacilityAdapter.getFilter().filter(newText);
+                }
+                return false;
+            }
+        });
 
     }
 
@@ -73,16 +90,18 @@ public class SearchResultFragment extends Fragment  {
             case R.id.home_tracker_button:
                 Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
                 return true;
-            case R.id.button_tracker_action:
-                Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
+            case R.id.item_menu_searchResult:
                 return true;
             default:
+                getActivity().onBackPressed();
                 return super.onOptionsItemSelected(item);
         }
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("검색결과");
         View view = inflater.inflate(R.layout.fragment_searchresult, container, false);
 
         RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(view.getContext());
@@ -90,7 +109,16 @@ public class SearchResultFragment extends Fragment  {
 
         requestQueue = Volley.newRequestQueue(view.getContext());
 
+        searchFacilityRecyclerView = view.findViewById(R.id.recycler_searchResult_facility);
+        searchFacilityRecyclerView.setHasFixedSize(true);
+        searchFacilityRecyclerView.setLayoutManager(mLayoutManager1);
+        doHttpRequestFacility();
+        doHttpRequestTeam();
+
+
         Button btnFacility = view.findViewById(R.id.button_searchResult_facility);
+//        int bntFacilityCnt = searchFacilityAdapter.getInfraModelList().size();
+//        btnFacility.setText(btnFacility.getText() + String.valueOf(btnFacility));
         btnFacility.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,35 +140,44 @@ public class SearchResultFragment extends Fragment  {
             }
         });
 
-        NoboButton btnKind = view.findViewById(R.id.button_searchResult_kind);
-        btnKind.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SearchResultBottomFragment searchResultBottomFragment =
-                        SearchResultBottomFragment.newInstance();
-                searchResultBottomFragment.show(getFragmentManager() ,
-                        searchResultBottomFragment.TAG);
-
-
-//                public void showBottomSheet(View view) {
-//                    SearchResultBottomFragment searchResultBottomFragment =
-//                            SearchResultBottomFragment.newInstance();
-//                    searchResultBottomFragment.show(getSupportFragmentManager(),
-//                            searchResultBottomFragment.TAG);
-//                }
-            }
-        });
-
-        searchFacilityRecyclerView = view.findViewById(R.id.recycler_searchResult_facility);
-        searchFacilityRecyclerView.setHasFixedSize(true);
-        searchFacilityRecyclerView.setLayoutManager(mLayoutManager1);
-        doHttpRequestFacility();
-
-
-//        searchTeamRecyclerView = view.findViewById(R.id.recycler_searchResult_team);
-//        searchTeamRecyclerView.setHasFixedSize(true);
-//        searchTeamRecyclerView.setLayoutManager(mLayoutManager2);
-        doHttpRequestTeam();
+        // (상세 필터 기능) 추가 작업 필요
+//        NoboButton btnKind = view.findViewById(R.id.button_searchResult_kind);
+//        setButton((btnKind));
+//        btnKind.setOnClickListener(new Button.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                SearchResultBottomFragment searchResultBottomFragment =
+//                        SearchResultBottomFragment.newInstance();
+//                searchResultBottomFragment.show(getFragmentManager() ,
+//                        searchResultBottomFragment.TAG);
+//
+////                public void showBottomSheet(View view) {
+////                    SearchResultBottomFragment searchResultBottomFragment =
+////                            SearchResultBottomFragment.newInstance();
+////                    searchResultBottomFragment.show(getSupportFragmentManager(),
+////                            searchResultBottomFragment.TAG);
+////                }
+//            }
+//        });
+//
+//        NoboButton btnRegion = view.findViewById(R.id.button_searchResult_region);
+//        setButton((btnRegion));
+//        btnRegion.setOnClickListener(new Button.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                SearchResultBottomFragment searchResultBottomFragment =
+//                        SearchResultBottomFragment.newInstance();
+//                searchResultBottomFragment.show(getFragmentManager() ,
+//                        searchResultBottomFragment.TAG);
+//
+////                public void showBottomSheet(View view) {
+////                    SearchResultBottomFragment searchResultBottomFragment =
+////                            SearchResultBottomFragment.newInstance();
+////                    searchResultBottomFragment.show(getSupportFragmentManager(),
+////                            searchResultBottomFragment.TAG);
+////                }
+//            }
+//        });
 
 
         return view;
@@ -175,13 +212,11 @@ public class SearchResultFragment extends Fragment  {
                     e.printStackTrace();
                 }
 
-//                searchFacilityAdapter = new SearchFacilityAdapter(result);
                 searchFacilityAdapter.setInfraModelList(result);
                 searchFacilityAdapter.setKindList("FACILITY");
                 List<InfraModel> result_orig = new ArrayList<>();
                 result_orig.addAll(result);
                 searchFacilityAdapter.setInfraModelList_orig(result_orig);
-//                searchFacilityAdapter.setFavoriteModelList_orig(result_orig);
                 searchFacilityRecyclerView.setAdapter(searchFacilityAdapter);
                 Log.i("TEST", response);
 
@@ -226,13 +261,10 @@ public class SearchResultFragment extends Fragment  {
                     e.printStackTrace();
                 }
 
-//                searchTeamAdapter = new SearchTeamAdapter(result);
                 searchFacilityAdapter.setTeamModelList(result);
                 List<TeamModel> result_orig = new ArrayList<>();
                 result_orig.addAll(result);
                 searchFacilityAdapter.setTeamModelList_orig(result_orig);
-//                searchFacilityAdapter.setFavoriteModelList_orig(result_orig);
-//                searchTeamRecyclerView.setAdapter(searchTeamAdapter);
                 Log.i("TEST", response);
 
             }
@@ -246,7 +278,6 @@ public class SearchResultFragment extends Fragment  {
 
         requestQueue.add(request);
     }
-
 
     private InfraModel setInfraModel(JSONObject data) throws JSONException {
 
@@ -334,6 +365,21 @@ public class SearchResultFragment extends Fragment  {
             }
         }
         return teamModel;
+    }
+
+    public void setButton(NoboButton button) {
+        button.setTextColor(Color.BLACK);
+        button.setTextSize(50);
+        button.setAllCaps(true);
+//        button.setIconSize(5);
+//        button.setFontIcon("\uf138");
+        button.setIconPadding(50);
+        button.setIconPosition(NoboButton.POSITION_RIGHT);
+        button.setBackgroundColor(Color.WHITE);
+        button.setFocusColor(Color.GRAY);
+        button.setBorderColor(Color.BLACK);
+        button.setBorderWidth(1);
+        button.setRadius(10);
     }
 
 }

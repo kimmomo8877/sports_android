@@ -9,6 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,9 +29,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.and02.MainActivity;
 import com.example.and02.R;
-import com.example.and02.ui.common.BoardModel;
-import com.example.and02.ui.common.BoardWriterModel;
-import com.example.and02.ui.home.InfraModel;
+import com.example.and02.ui.common.ScheduleModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,13 +39,12 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamStoryFragment extends Fragment {
+public class TeamScheduleFragment extends Fragment {
 
-    private RecyclerView teamStoryRecyclerView;
+    private RecyclerView teamScheduleRecyclerView;
     private RequestQueue requestQueue;
 
-    private TeamStoryAdapter teamStoryAdapter;
-    private String imageUrl = "http://www.kbostat.co.kr/resource/static-file";
+    private TeamScheduleAdapter teamScheduleAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,8 +57,8 @@ public class TeamStoryFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar.
 
-        inflater.inflate(R.menu.teamstory_nav_menu, menu);
-        MenuItem searchItem = menu.findItem(R.id.item_menu_teamStory_search);
+        inflater.inflate(R.menu.teamschedule_nav_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.item_menu_teamSchedule_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -67,7 +68,7 @@ public class TeamStoryFragment extends Fragment {
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                teamStoryAdapter.getFilter().filter(newText);
+                teamScheduleAdapter.getFilter().filter(newText);
                 return false;
             }
         });
@@ -81,7 +82,7 @@ public class TeamStoryFragment extends Fragment {
             case R.id.home_tracker_button:
                 Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
                 return true;
-            case R.id.item_menu_teamStory_search:
+            case R.id.item_menu_teamSchedule_search:
                 return true;
             default:
                 getActivity().onBackPressed();
@@ -91,8 +92,8 @@ public class TeamStoryFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("팀스토리");
-        View view = inflater.inflate(R.layout.fragment_teamstory, container, false);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("팀일정");
+        View view = inflater.inflate(R.layout.fragment_teamschedule, container, false);
 
         final TeamModel teamModel = (TeamModel) getArguments().getSerializable("teamModel");
 
@@ -100,16 +101,16 @@ public class TeamStoryFragment extends Fragment {
 
         requestQueue = Volley.newRequestQueue(view.getContext());
 
-        teamStoryRecyclerView = view.findViewById(R.id.recycler_teamStory);
-        teamStoryRecyclerView.setHasFixedSize(true);
-        teamStoryRecyclerView.setLayoutManager(mLayoutManager);
-        doHttpRequestTeamStory(teamModel);
+        teamScheduleRecyclerView = view.findViewById(R.id.recycler_teamSchedule);
+        teamScheduleRecyclerView.setHasFixedSize(true);
+        teamScheduleRecyclerView.setLayoutManager(mLayoutManager);
+        doHttpRequestTeamSchedule(teamModel);
 
         return view;
     }
 
-    private void doHttpRequestTeamStory(TeamModel teamModel) {
-        String url = "http://www.kbostat.co.kr/resource/board/team/" + teamModel.getTeamNo() + "/34/content";
+    private void doHttpRequestTeamSchedule(TeamModel teamModel) {
+        String url = "http://www.kbostat.co.kr/resource/schedule/team/" + teamModel.getTeamNo();
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -121,27 +122,25 @@ public class TeamStoryFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
-                List<BoardModel> result = new ArrayList<>();
+                List<ScheduleModel> result = new ArrayList<>();
                 try {
                     JSONArray root = new JSONArray(response);
                     for (int i = 0; i < root.length(); i++) {
                         JSONObject data = root.getJSONObject(i);
-                        if (data.getInt("boardNo") != 34) {
-                            continue;
-                        }
-                        if (setBoardModel(data) != null) {
-                            result.add(setBoardModel(data));
-                        }
+                        ScheduleModel scheduleModel = new ScheduleModel();
+                        scheduleModel.setTitle(data.getString("title"));
+                        scheduleModel.setStartDate(data.getString("startDate"));
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                teamStoryAdapter = new TeamStoryAdapter(result);
-                List<BoardModel> result_orig = new ArrayList<>();
+                teamScheduleAdapter = new TeamScheduleAdapter(result);
+                List<ScheduleModel> result_orig = new ArrayList<>();
                 result_orig.addAll(result);
-                teamStoryAdapter.setBoardModelList_orig(result_orig);
-                teamStoryRecyclerView.setAdapter(teamStoryAdapter);
+//                boardAdapter.setBoardModelList_orig(result_orig);
+                teamScheduleRecyclerView.setAdapter(teamScheduleAdapter);
                 Log.i("TEST", response);
 
             }
@@ -155,33 +154,6 @@ public class TeamStoryFragment extends Fragment {
 
 
         requestQueue.add(request);
-    }
-
-    private BoardModel setBoardModel(JSONObject data) throws JSONException {
-
-        BoardModel boardModel = new BoardModel();
-
-        boardModel.setTitle(data.getString("title"));
-        boardModel.setContent(data.getString("content"));
-        boardModel.setRegisteDate(data.getString("registeDate"));
-
-        JSONObject writerData = data.getJSONObject("writer");
-        BoardWriterModel boardWriterModel = new BoardWriterModel();
-        boardWriterModel.setName(writerData.getString("name"));
-        boardWriterModel.setRegisteDate(writerData.getString("registeDate"));
-        boardModel.setWriter(boardWriterModel);
-
-        boardModel.setAttachFiles(data.getJSONArray("attachFiles"));
-        if (boardModel.getAttachFiles() != null) {
-            if (boardModel.getAttachFiles().length() > 0) {
-                JSONObject attachObject = boardModel.getAttachFiles().getJSONObject(0);
-                StringBuilder sb = new StringBuilder(imageUrl);
-                sb.append(attachObject.getString("saveFilePath"));
-                boardModel.setAttachFile(sb.toString());
-            } else {
-            }
-        }
-        return boardModel;
     }
 
 

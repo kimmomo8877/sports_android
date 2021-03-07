@@ -10,6 +10,10 @@
         android:title="공지사항"
         app:showAsAction="never"/>
     <item
+        android:id="@+id/action_teamDetail_reservation"
+        android:title="팀예약현황"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/action_teamDetail_schedule"
         android:title="팀일정"
         app:showAsAction="never"/>

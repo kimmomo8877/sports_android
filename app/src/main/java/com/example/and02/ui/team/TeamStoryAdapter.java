@@ -4,6 +4,8 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,9 +16,10 @@ import com.example.and02.R;
 import com.example.and02.ui.common.BoardModel;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class TeamStoryAdapter extends RecyclerView.Adapter<TeamStoryAdapter.TeamStoryViewHolder>  {
+public class TeamStoryAdapter extends RecyclerView.Adapter<TeamStoryAdapter.TeamStoryViewHolder> implements Filterable {
     private List<BoardModel> boardModelList;
     private List<BoardModel> boardModelList_orig;
 
@@ -113,6 +116,54 @@ public class TeamStoryAdapter extends RecyclerView.Adapter<TeamStoryAdapter.Team
 
     public List<BoardModel> getBoardModelList() {
         return boardModelList;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return dataFilter;
+    }
+
+    private Filter dataFilter = new Filter() {
+        //Automatic on background thread
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            // 삭제할 할 경우 로직
+            List<BoardModel> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(boardModelList_orig);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (BoardModel item : boardModelList_orig) {
+                    if (item.getTitle().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            results.count  = filteredList.size();
+            return results;
+        }
+
+        //Automatic on UI thread
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            if (results.count > 0) {
+                boardModelList.clear();
+                boardModelList.addAll((List) results.values);
+                notifyDataSetChanged();
+            }
+        }
+
+    };
+
+    public List<BoardModel> getBoardModelList_orig() {
+        return boardModelList_orig;
+    }
+
+    public void setBoardModelList_orig(List<BoardModel> boardModelList_orig) {
+        this.boardModelList_orig = boardModelList_orig;
     }
 
 

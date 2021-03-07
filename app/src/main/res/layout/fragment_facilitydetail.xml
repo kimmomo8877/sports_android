@@ -28,6 +28,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:textStyle="bold"
+                android:textColor="#000000"
                 android:text=""
                 android:textSize="30sp" />
 
@@ -122,6 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
+                    android:textColor="#000000"
                     android:textSize="18sp"
                     android:layout_weight="1"/>
 
@@ -150,6 +152,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
                     android:textSize="18sp"
+                    android:textColor="#000000"
                     android:text=""
                     android:layout_weight="2"/>
 
@@ -178,6 +181,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
                     android:textSize="18sp"
+                    android:textColor="#000000"
                     android:text=""
                     android:layout_weight="1"/>
 
@@ -189,7 +193,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                app:nb_borderColor="#000000"
+                app:nb_borderColor="#888888"
                 app:nb_borderWidth="1dp" />
 
             <TextView
@@ -199,6 +203,7 @@
                 android:layout_marginTop="20dp"
                 android:paddingLeft="20dp"
                 android:text="스포츠시설"
+                android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="20sp" />
 
@@ -217,7 +222,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                app:nb_borderColor="#000000"
+                app:nb_borderColor="#888888"
                 app:nb_borderWidth="1dp" />
 
             <TextView
@@ -227,6 +232,7 @@
                 android:layout_marginTop="20dp"
                 android:paddingLeft="20dp"
                 android:text="부속시설"
+                android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="20sp" />
 
@@ -245,7 +251,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                app:nb_borderColor="#000000"
+                app:nb_borderColor="#888888"
                 app:nb_borderWidth="1dp" />
 
             <TextView
@@ -255,6 +261,7 @@
                 android:layout_marginTop="20dp"
                 android:paddingLeft="20dp"
                 android:text="기타 부대시설"
+                android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="20sp" />
 
@@ -273,7 +280,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                app:nb_borderColor="#000000"
+                app:nb_borderColor="#888888"
                 app:nb_borderWidth="1dp" />
 
             <TextView
@@ -283,6 +290,7 @@
                 android:layout_marginTop="20dp"
                 android:paddingLeft="20dp"
                 android:text="위치"
+                android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="20sp" />
 
@@ -301,7 +309,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                app:nb_borderColor="#000000"
+                app:nb_borderColor="#888888"
                 app:nb_borderWidth="1dp" />
 
             <TextView
@@ -311,6 +319,7 @@
                 android:layout_marginTop="20dp"
                 android:paddingLeft="20dp"
                 android:text="요금"
+                android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="20sp" />
 

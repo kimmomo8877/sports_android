@@ -1,9 +1,12 @@
 package com.example.and02.ui.team;
 
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,12 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.and02.R;
 import com.example.and02.ui.common.BoardModel;
+import com.example.and02.ui.common.ScheduleModel;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ReservationViewHolder>  {
+public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ReservationViewHolder> implements Filterable {
     private List<ReservationModel> reservationModelList;
     private List<ReservationModel> reservationModelList_orig;
 
@@ -101,5 +106,56 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         return reservationModelList;
     }
 
+    public void setReservationModelList(List<ReservationModel> reservationModelList) {
+        this.reservationModelList = reservationModelList;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return dataFilter;
+    }
+
+    private Filter dataFilter = new Filter() {
+        //Automatic on background thread
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            // 삭제할 할 경우 로직
+            List<ReservationModel> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(reservationModelList_orig);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (ReservationModel item : reservationModelList_orig) {
+                    if (item.getInfra().getName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            results.count  = filteredList.size();
+            return results;
+        }
+
+        //Automatic on UI thread
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            if (results.count > 0) {
+                reservationModelList.clear();
+                reservationModelList.addAll((List) results.values);
+                notifyDataSetChanged();
+            }
+        }
+
+    };
+
+    public List<ReservationModel> getReservationModelList_orig() {
+        return reservationModelList_orig;
+    }
+
+    public void setReservationModelList_orig(List<ReservationModel> reservationModelList_orig) {
+        this.reservationModelList_orig = reservationModelList_orig;
+    }
 
 }
