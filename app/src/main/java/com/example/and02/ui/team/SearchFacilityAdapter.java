@@ -18,7 +18,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
-public class SearchFacilityAdapter extends RecyclerView.Adapter<SearchFacilityAdapter.SearchFacilityViewHolder>  {
+public class SearchFacilityAdapter extends RecyclerView.Adapter<SearchFacilityAdapter.SearchFacilityViewHolder> {
     private List<InfraModel> infraModelList;
     private List<InfraModel> infraModelList_orig;
     private List<TeamModel> teamModelList;
@@ -65,82 +65,93 @@ public class SearchFacilityAdapter extends RecyclerView.Adapter<SearchFacilityAd
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int pos = getAdapterPosition() ;
-                    if (pos != RecyclerView.NO_POSITION) {
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("infraModel", infraModelList.get(pos));
+
+                    if (kindList.equals("FACILITY")) {
+                        int pos = getAdapterPosition();
+                        if (pos != RecyclerView.NO_POSITION) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("infraModel", infraModelList.get(pos));
 //                        bundle.putString("searchWord", favoriteModelList.get(pos).getSearchWord());
-                        Navigation.findNavController(v).navigate(R.id.action_searchResultFragment_to_facilityMapFragment, bundle);
+                            Navigation.findNavController(v).navigate(R.id.action_searchResultFragment_to_facilityMapFragment, bundle);
+                        }
+                    } else if (kindList.equals("TEAM")) {
+                        int pos = getAdapterPosition();
+                        if (pos != RecyclerView.NO_POSITION) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("teamModel", teamModelList.get(pos));
+//                        bundle.putString("searchWord", favoriteModelList.get(pos).getSearchWord());
+                            Navigation.findNavController(v).navigate(R.id.action_searchResultFragment_to_teamDetailFragment, bundle);
+                        }
+                    } else {
+
                     }
                 }
             });
-
         }
 
-        public TextView getTextViewName() {
-            return textViewName;
+            public TextView getTextViewName () {
+                return textViewName;
+            }
+
+            public TextView getTextViewAddress () {
+                return textViewAddress;
+            }
+
+            public SimpleDraweeView getImageViewImage () {
+                return imageViewImage;
+            }
         }
 
-        public TextView getTextViewAddress() {
-            return textViewAddress;
+        @NonNull
+        @Override
+        public SearchFacilityAdapter.SearchFacilityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            LinearLayout layout = (LinearLayout) LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.row_searchfacility_adapter, parent, false);
+            return new SearchFacilityAdapter.SearchFacilityViewHolder(layout);
         }
 
-        public SimpleDraweeView getImageViewImage() {
-            return imageViewImage;
-        }
-    }
-
-    @NonNull
-    @Override
-    public SearchFacilityAdapter.SearchFacilityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LinearLayout layout = (LinearLayout) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_searchfacility_adapter, parent, false);
-        return new SearchFacilityAdapter.SearchFacilityViewHolder(layout);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull SearchFacilityAdapter.SearchFacilityViewHolder holder, int position) {
+        @Override
+        public void onBindViewHolder(@NonNull SearchFacilityAdapter.SearchFacilityViewHolder holder, int position) {
 
 
+            if (kindList.equals("FACILITY")) {
+                if (infraModelList.get(position).getName() != null) {
+                    holder.getTextViewName().setText(infraModelList.get(position).getName());
+                }
 
-        if (kindList.equals("FACILITY")) {
-            if (infraModelList.get(position).getName() != null) {
-                holder.getTextViewName().setText(infraModelList.get(position).getName());
-            }
+                if (infraModelList.get(position).getAddress() != null) {
+                    holder.getTextViewAddress().setText(infraModelList.get(position).getAddress());
+                }
 
-            if (infraModelList.get(position).getAddress() != null) {
-                holder.getTextViewAddress().setText(infraModelList.get(position).getAddress());
-            }
-
-            if (infraModelList.get(position).getAttachFile() != null) {
-                Uri uri = Uri.parse(infraModelList.get(position).getAttachFile());
-                holder.getImageViewImage().setImageURI(uri);
-            }
-        } else if (kindList.equals("TEAM")) {
-            if (teamModelList.get(position).getName() != null) {
-                holder.getTextViewName().setText(teamModelList.get(position).getName());
-            }
-            if (teamModelList.get(position).getAttachFile() != null) {
-                Uri uri = Uri.parse(teamModelList.get(position).getAttachFile());
-                holder.getImageViewImage().setImageURI(uri);
-            }
+                if (infraModelList.get(position).getAttachFile() != null) {
+                    Uri uri = Uri.parse(infraModelList.get(position).getAttachFile());
+                    holder.getImageViewImage().setImageURI(uri);
+                }
+            } else if (kindList.equals("TEAM")) {
+                if (teamModelList.get(position).getName() != null) {
+                    holder.getTextViewName().setText(teamModelList.get(position).getName());
+                }
+                if (teamModelList.get(position).getAttachFile() != null) {
+                    Uri uri = Uri.parse(teamModelList.get(position).getAttachFile());
+                    holder.getImageViewImage().setImageURI(uri);
+                }
 
 //            if (teamModelList.get(position).getAddress() != null) {
 //                holder.getTextViewAddress().setText(teamModelList.get(position).getAddress());
 //            }
 
+            }
+
         }
 
-    }
+        @Override
+        public int getItemCount() {
+            return infraModelList.size();
+        }
 
-    @Override
-    public int getItemCount() {
-        return infraModelList.size();
-    }
-
-    public List<InfraModel> getInfraModelList() {
-        return infraModelList;
-    }
+        public List<InfraModel> getInfraModelList() {
+            return infraModelList;
+        }
 
 
 //    @Override
@@ -180,4 +191,4 @@ public class SearchFacilityAdapter extends RecyclerView.Adapter<SearchFacilityAd
 //    public void setFavoriteModelList_orig(List<FavoriteModel> favoriteList_orig) {
 //        this.favoriteModelList_orig = favoriteList_orig;
 //    }
-}
+    }

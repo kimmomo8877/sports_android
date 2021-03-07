@@ -24,7 +24,7 @@ public class TeamModel implements Serializable {
     private CodeModel belongCode;
     private CodeModel genderCode;
     private CodeModel regionCode;
-    private CodeModel psortCode;
+    private CodeModel sportCode;
     private boolean deleteYn;
     private JSONArray attachFiles;
     private String attachFile;
@@ -149,12 +149,12 @@ public class TeamModel implements Serializable {
         this.regionCode = regionCode;
     }
 
-    public CodeModel getPsortCode() {
-        return psortCode;
+    public CodeModel getSportCode() {
+        return sportCode;
     }
 
-    public void setPsortCode(CodeModel psortCode) {
-        this.psortCode = psortCode;
+    public void setSportCode(CodeModel sportCode) {
+        this.sportCode = sportCode;
     }
 
     public boolean isDeleteYn() {
