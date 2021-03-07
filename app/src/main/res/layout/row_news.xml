@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/colorAccent"
+                android:background="#7BCEEF"
                 android:gravity="center"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"

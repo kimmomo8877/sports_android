@@ -139,7 +139,7 @@ public class FacilityMapFragment extends Fragment implements OnMapReadyCallback 
             public void onClick(View view) {
                 String tel = "tel:" + infraModel.getPhoneNumber();
                 Log.i("reservationButton", "call button click");
-                startActivity(new Intent("android.intent.action.CALL",Uri.parse(tel)));
+                startActivity(new Intent("android.intent.action.DIAL",Uri.parse(tel)));
             }
         }) ;
         setButton(btnPhone);

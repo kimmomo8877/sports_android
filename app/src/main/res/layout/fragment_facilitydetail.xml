@@ -18,7 +18,7 @@
                 android:id="@+id/imageView_facilityDetail_main"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/home_main" />
+                android:src="@drawable/no_image" />
 
             <TextView
                 android:id="@+id/textView_facilityDetail_title"
@@ -42,7 +42,7 @@
                 <com.ornach.nobobutton.NoboButton
                     android:id="@+id/button_facilityDetail_reservation"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:nb_drawableResource="@drawable/ic_book_open"
                     app:nb_backgroundColor="#EF3D56"
@@ -57,7 +57,7 @@
                 <com.ornach.nobobutton.NoboButton
                     android:id="@+id/button_facilityDetail_phone"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:nb_drawableResource="@drawable/ic_phone"
                     app:nb_backgroundColor="#EF3D56"
@@ -72,7 +72,7 @@
                 <com.ornach.nobobutton.NoboButton
                     android:id="@+id/button_facilityDetail_map"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:nb_drawableResource="@drawable/ic_map"
                     app:nb_backgroundColor="#EF3D56"
@@ -87,7 +87,7 @@
                 <com.ornach.nobobutton.NoboButton
                     android:id="@+id/button_facilityDetail_save"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:nb_drawableResource="@drawable/ic_save"
                     app:nb_backgroundColor="#EF3D56"

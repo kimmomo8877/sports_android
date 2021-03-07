@@ -128,8 +128,8 @@ public class FacilityDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String tel = "tel:" + infraModel.getPhoneNumber();
-                Log.i("reservationButton", "call button click");
-                startActivity(new Intent("android.intent.action.CALL",Uri.parse(tel)));
+                Log.i("phone call", tel);
+                startActivity(new Intent("android.intent.action.DIAL",Uri.parse(tel)));
             }
         }) ;
         setButton(btnPhone);

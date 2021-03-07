@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="10dp"
     android:layout_marginBottom="5dp"
     android:orientation="vertical">
 
@@ -18,6 +17,8 @@
         android:id="@+id/button_facilityMap_title"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         android:background="#00ff0000"
         android:textStyle="bold"
         android:text="추천 스포츠시설"
@@ -30,12 +31,13 @@
         android:orientation="horizontal"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="1">
 
         <com.ornach.nobobutton.NoboButton
             android:id="@+id/button_facilityMap_reservation"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             app:nb_drawableResource="@drawable/ic_book_open"
             app:nb_backgroundColor="#EF3D56"
@@ -50,7 +52,7 @@
         <com.ornach.nobobutton.NoboButton
             android:id="@+id/button_facilityMap_phone"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             app:nb_drawableResource="@drawable/ic_phone"
             app:nb_backgroundColor="#EF3D56"
@@ -65,7 +67,7 @@
         <com.ornach.nobobutton.NoboButton
             android:id="@+id/button_facilityMap_map"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             app:nb_drawableResource="@drawable/ic_map"
             app:nb_backgroundColor="#EF3D56"
@@ -80,7 +82,7 @@
         <com.ornach.nobobutton.NoboButton
             android:id="@+id/button_facilityMap_save"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             app:nb_drawableResource="@drawable/ic_save"
             app:nb_backgroundColor="#EF3D56"

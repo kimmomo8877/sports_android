@@ -138,10 +138,13 @@ public class ReservationFragment extends Fragment {
         }
 
         TextView textViewTitle = view.findViewById((R.id.textView_reservation_title));
-        textViewTitle.setText(infraModel.getName());
+        if (!infraModel.getName().equals("null")) {
+            textViewTitle.setText(infraModel.getName());
+        }
         TextView textViewSubTitle = view.findViewById(R.id.textView_reservation_subTitle);
-        textViewSubTitle.setText(infraModel.getAddress());
-
+        if (!infraModel.getAddress().equals("null")) {
+            textViewSubTitle.setText(infraModel.getAddress());
+        }
         textViewStartDate = view.findViewById(R.id.textView_reservation_startDate);
         textViewStartTime = view.findViewById(R.id.textView_reservation_startTime);
         textViewEndDate   = view.findViewById(R.id.textView_reservation_endDate);

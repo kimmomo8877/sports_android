@@ -10,9 +10,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
-        android:layout_height="0dp"
         android:layout_weight="1">
 
         <LinearLayout
@@ -24,7 +24,8 @@
             <ImageView
                 android:id="@+id/imageView_reservation_main"
                 android:layout_width="100dp"
-                android:layout_height="100dp" />
+                android:layout_height="match_parent"
+                android:background="@drawable/no_image"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,13 +57,13 @@
     </LinearLayout>
 
     <com.ornach.nobobutton.NoboButton
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:layout_marginTop="20dp"
-    android:layout_marginBottom="20dp"
-    app:nb_borderColor="#888888"
-    app:nb_borderWidth="1dp" />
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        app:nb_borderColor="#888888"
+        app:nb_borderWidth="1dp" />
 
 
     <LinearLayout
@@ -78,10 +79,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="방문희망일"
-                android:textSize="20dp"
                 android:layout_marginBottom="10dp"
+                android:text="방문희망일"
                 android:textColor="#000000"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -95,8 +96,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
-                    android:textSize="20dp"
-                    android:text="시작일자" />
+                    android:text="시작일자"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/textView_reservation_startDate"
@@ -104,8 +105,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:textSize="20dp"
-                    android:text="0000/00/00" />
+                    android:text="0000/00/00"
+                    android:textSize="20dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -118,18 +119,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="20dp"
                     android:background="@android:color/transparent"
-                    android:text="시작시간" />
+                    android:text="시작시간"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/textView_reservation_startTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginLeft="20dp"
-                    android:textSize="20dp"
-                    android:text="00:00" />
+                    android:layout_weight="1"
+                    android:text="00:00"
+                    android:textSize="20dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -143,17 +144,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
-                    android:textSize="20dp"
-                    android:text="종료일자" />
+                    android:text="종료일자"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/textView_reservation_endDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginLeft="20dp"
-                    android:textSize="20dp"
-                    android:text="0000/00/00" />
+                    android:layout_weight="1"
+                    android:text="0000/00/00"
+                    android:textSize="20dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -167,17 +168,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
-                    android:textSize="20dp"
-                    android:text="종료시간" />
+                    android:text="종료시간"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/textView_reservation_endTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginLeft="20dp"
-                    android:textSize="20dp"
-                    android:text="00:00" />
+                    android:layout_weight="1"
+                    android:text="00:00"
+                    android:textSize="20dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -191,18 +192,17 @@
 
         <Button
             android:id="@+id/button_reservation_confirm"
-            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textSize="20dp"
-            android:background="#ff0000ff"
+            android:layout_marginRight="10dp"
+            android:background="#7BCEEF"
+            android:text="예약"
             android:textColor="#FFFFFF"
-            android:text="예약" />
+            android:textSize="20dp" />
     </LinearLayout>
 
 </LinearLayout>
-
 
 
     <!--<LinearLayout-->
