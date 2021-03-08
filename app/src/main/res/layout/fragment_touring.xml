@@ -29,12 +29,14 @@
         <ImageView
             android:id="@+id/imageView_fragment_touringMain"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="170dp"
+            android:scaleType="fitXY"
             android:src="@drawable/touring_main" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
             <ImageView
                 android:layout_width="wrap_content"

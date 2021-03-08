@@ -1,132 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:fadingEdge="none"
     android:fillViewport="true"
     android:scrollbars="none"
-    android:fadingEdge="none"
-    android:background="#ffffff"
 
     tools:context=".MainActivity">
 
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#ffffff">
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:background="#ffffff"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView_fragment_homeMain"
-            android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:src="@drawable/home_main" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
 
-        <ImageView
-            android:id="@+id/imageView_fragment_homeSub"
-            android:layout_width="160dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/main_sub"/>
+            <ImageView
+                android:id="@+id/imageView_fragment_homeMain"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/home_main" />
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/imageView_fragment_homeSub"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/main_sub" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-        android:id="@+id/intro_recycler_view"/>
+        </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView_fragment_homeSport"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="추천 스포츠시설"
-        android:paddingTop="5dp"
-        android:paddingLeft="10dp"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-        android:id="@+id/recycler_fragment_homeSportMenu"/>
-
-    <androidx.recyclerview.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/intro_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_homeSport"/>
+            android:scrollbars="horizontal" />
 
-    <TextView
-        android:id="@+id/textView_fragment_homeHotel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="추천 숙박"
-        android:paddingTop="5dp"
-        android:paddingLeft="10dp"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/textView_fragment_homeSport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="추천 스포츠시설"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-        android:id="@+id/recycler_fragment_homeHotelMenu"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_homeSportMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-        android:id="@+id/recycler_fragment_homeHotel"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_homeSport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal" />
 
-    <TextView
-        android:id="@+id/textView_fragment_homeFood"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="추천 음식"
-        android:paddingTop="5dp"
-        android:paddingLeft="10dp"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/textView_fragment_homeHotel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="추천 숙박"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-        android:id="@+id/recycler_fragment_homeFoodMenu"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_homeHotelMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-        android:id="@+id/recycler_fragment_homeFood"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_homeHotel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textView_fragment_homeFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="추천 음식"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_homeFoodMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_homeFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal" />
+
+    </LinearLayout>
 
 </ScrollView>

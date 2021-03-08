@@ -45,8 +45,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -89,7 +91,6 @@ public class ReservationFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("시설예약");
         Log.i("onCreated", "inside on activity created");
         this.requestQueue = Volley.newRequestQueue(getContext());
         setHasOptionsMenu(true);
@@ -106,14 +107,14 @@ public class ReservationFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle item selection
-        Log.i("onOptionsItemSelected","yes");
+        Log.i("onOptionsItemSelected", "yes");
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                Log.i("onOptionsItemSelected","back");
+                Log.i("onOptionsItemSelected", "back");
                 getActivity().onBackPressed();
                 return true;
             case R.id.button_tracker_action:
-                Log.i("onOptionsItemSelected","tracker");
+                Log.i("onOptionsItemSelected", "tracker");
                 Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
                 return true;
             default:
@@ -124,7 +125,7 @@ public class ReservationFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("시설예약");
+//        ((MainActivity) getActivity()).getSupportActionBar().setTitle("시설예약");
         View view = inflater.inflate(R.layout.fragment_reservation, container, false);
 
         final InfraModel infraModel = (InfraModel) getArguments().getSerializable("infraModel");
@@ -147,8 +148,8 @@ public class ReservationFragment extends Fragment {
         }
         textViewStartDate = view.findViewById(R.id.textView_reservation_startDate);
         textViewStartTime = view.findViewById(R.id.textView_reservation_startTime);
-        textViewEndDate   = view.findViewById(R.id.textView_reservation_endDate);
-        textViewEndTime   = view.findViewById(R.id.textView_reservation_endTime);
+        textViewEndDate = view.findViewById(R.id.textView_reservation_endDate);
+        textViewEndTime = view.findViewById(R.id.textView_reservation_endTime);
 
         btnStartDate = view.findViewById(R.id.button_reservation_startDate);
         btnStartDate.setOnClickListener(new Button.OnClickListener() {
@@ -156,18 +157,18 @@ public class ReservationFragment extends Fragment {
             public void onClick(View view) {
                 Log.i("startButton", "startButton");
                 typeChk = 1;
-                new DatePickerDialog(getContext(), setDate, reservationCalendar.get(reservationCalendar.YEAR),reservationCalendar.get(reservationCalendar.MONTH), reservationCalendar.get(reservationCalendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(getContext(), setDate, reservationCalendar.get(reservationCalendar.YEAR), reservationCalendar.get(reservationCalendar.MONTH), reservationCalendar.get(reservationCalendar.DAY_OF_MONTH)).show();
             }
-        }) ;
+        });
         btnStartTime = view.findViewById(R.id.button_reservation_startTime);
         btnStartTime.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i("startButton", "startButton");
                 typeChk = 1;
-                new TimePickerDialog(getContext(), setTime, reservationCalendar.get(reservationCalendar.HOUR), reservationCalendar.get(reservationCalendar.MINUTE),false).show();
+                new TimePickerDialog(getContext(), setTime, reservationCalendar.get(reservationCalendar.HOUR), reservationCalendar.get(reservationCalendar.MINUTE), false).show();
             }
-        }) ;
+        });
 
         btnEndDate = view.findViewById(R.id.button_reservation_endDate);
         btnEndDate.setOnClickListener(new Button.OnClickListener() {
@@ -175,18 +176,18 @@ public class ReservationFragment extends Fragment {
             public void onClick(View view) {
                 Log.i("endButton", "endButton");
                 typeChk = 2;
-                new DatePickerDialog(getContext(), setDate, reservationCalendar.get(reservationCalendar.YEAR),reservationCalendar.get(reservationCalendar.MONTH), reservationCalendar.get(reservationCalendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(getContext(), setDate, reservationCalendar.get(reservationCalendar.YEAR), reservationCalendar.get(reservationCalendar.MONTH), reservationCalendar.get(reservationCalendar.DAY_OF_MONTH)).show();
             }
-        }) ;
+        });
         btnEndTime = view.findViewById(R.id.button_reservation_endTime);
         btnEndTime.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i("endButton", "endButton");
                 typeChk = 2;
-                new TimePickerDialog(getContext(), setTime, reservationCalendar.get(reservationCalendar.HOUR), reservationCalendar.get(reservationCalendar.MINUTE),false).show();
+                new TimePickerDialog(getContext(), setTime, reservationCalendar.get(reservationCalendar.HOUR), reservationCalendar.get(reservationCalendar.MINUTE), false).show();
             }
-        }) ;
+        });
 
 
         Button btnConfirm = view.findViewById(R.id.button_reservation_confirm);
@@ -194,11 +195,23 @@ public class ReservationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.i("confirmButton", "confirmButton");
-                ReservationModel reservationModel = new ReservationModel();
-                reservationModel.setInfraNo(infraModel.getInfraNo());
-                reservation(reservationModel);
+
+                String startDate = textViewStartDate.getText() + " " + textViewStartTime.getText();
+                String endDate = textViewEndDate.getText() + " " + textViewEndTime.getText();
+                int result = dateCompareTo(startDate, endDate);
+
+                if (textViewStartDate.getText().equals("0000/00/00") || textViewEndDate.getText().equals("0000/00/00")
+                        || textViewStartTime.getText().equals("00:00") || textViewEndTime.getText().equals("00:00")) {
+                    Toast.makeText(getContext(), "실패 (날짜 또는 시간 설정 필요)", Toast.LENGTH_LONG).show();
+                } else if (result == 1) {
+                    Toast.makeText(getContext(), "실패 (시작일 > 종료일)", Toast.LENGTH_LONG).show();
+                } else {
+                    ReservationModel reservationModel = new ReservationModel();
+                    reservationModel.setInfraNo(infraModel.getInfraNo());
+                    reservation(reservationModel);
+                }
             }
-        }) ;
+        });
 
 
 //        btnEnd = view.findViewById(R.id.button_reservation_end);
@@ -212,12 +225,51 @@ public class ReservationFragment extends Fragment {
 //        }) ;
 
 
-
 //        requestQueue = Volley.newRequestQueue(view.getContext());
 //        doHttpRequest();
 
         return view;
     }
+
+    private int todayCompareTo(String endDate) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        Date time = new Date();
+        String current = format.format(time);
+        Date today = null;
+        try {
+            today = format.parse(current);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date end = null;
+        try {
+            end = format.parse(endDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } //dd("current:"+current); //current: 2020-09-15 10:18:16 //dd("today:"+today); //tody:Tue Sep 15 10:18:16 KST 2020 //dd("endDate:"+endDate); //dd("end:"+end);
+        int result = today.compareTo(end);
+        return result;
+    }
+
+
+    private int dateCompareTo(String startDate, String endDate) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        Date today = null;
+        try {
+            today = format.parse(startDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date end = null;
+        try {
+            end = format.parse(endDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int result = today.compareTo(end);
+        return result;
+    }
+
 
     private void reservation(final ReservationModel reservationModel) {
         String url = "http://www.kbostat.co.kr/resource/reservation";
@@ -226,8 +278,8 @@ public class ReservationFragment extends Fragment {
             public void onResponse(String response) {
                 Log.i("Reservation", "Response : " + response);
 //                try {
-                    Log.i("Reservation", "Reservation Success : ");
-                    Toast.makeText(getContext(), "예약을 성공 하였습니다.", Toast.LENGTH_SHORT).show();
+                Log.i("Reservation", "Reservation Success : ");
+                Toast.makeText(getContext(), "예약 성공", Toast.LENGTH_LONG).show();
 //                    JSONObject parsedResponse = new JSONObject(response);
 //                    String token = parsedResponse.getString("accessToken");
 //                    getUserNo(token);
@@ -239,7 +291,7 @@ public class ReservationFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Reservation", "Reservation Error : " + error.toString());
-                Toast.makeText(getContext(), "예약을 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "예약 실패", Toast.LENGTH_LONG).show();
             }
         }) {
             @Override
@@ -267,9 +319,9 @@ public class ReservationFragment extends Fragment {
     public void updateDate() {
         String format = "YYYY/MM/dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.KOREA);
-        if ( typeChk == 1 ) {
+        if (typeChk == 1) {
             textViewStartDate.setText(simpleDateFormat.format(reservationCalendar.getTime()));
-        } else if ( typeChk == 2 ) {
+        } else if (typeChk == 2) {
             textViewEndDate.setText(simpleDateFormat.format(reservationCalendar.getTime()));
         }
     }
@@ -277,9 +329,9 @@ public class ReservationFragment extends Fragment {
     public void updateTime() {
         String format = "HH:mm";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.KOREA);
-        if ( typeChk == 1 ) {
+        if (typeChk == 1) {
             textViewStartTime.setText(simpleDateFormat.format(reservationCalendar.getTime()));
-        } else if ( typeChk == 2 ) {
+        } else if (typeChk == 2) {
             textViewEndTime.setText(simpleDateFormat.format(reservationCalendar.getTime()));
         }
     }
