@@ -98,33 +98,27 @@ public class TeamDetailFragment extends Fragment {
                 getActivity().onBackPressed();
                 return true;
             case R.id.action_teamDetail_home:
-                Log.i("onOptionsItemSelected", "tracker");
-                Toast.makeText(getActivity(), "Click Home", Toast.LENGTH_SHORT).show();
+                Log.i("onOptionsItemSelected", "home");
 //                Navigation.findNavController(view).navigate(R.id.action_teamDetailFragment_to_, bundle);
                 return true;
             case R.id.action_teamDetail_notice:
-                Log.i("onOptionsItemSelected", "tracker");
-                Toast.makeText(getActivity(), "Click Notice", Toast.LENGTH_SHORT).show();
+                Log.i("onOptionsItemSelected", "notice");
                 Navigation.findNavController(view).navigate(R.id.action_teamDetailFragment_to_teamNoticeFragment, bundle);
                 return true;
             case R.id.action_teamDetail_reservation:
-                Log.i("onOptionsItemSelected", "tracker");
-                Toast.makeText(getActivity(), "Click Notice", Toast.LENGTH_SHORT).show();
+                Log.i("onOptionsItemSelected", "reservation");
                 Navigation.findNavController(view).navigate(R.id.action_teamDetailFragment_to_teamReservationFragment, bundle);
                 return true;
             case R.id.action_teamDetail_schedule:
-                Log.i("onOptionsItemSelected", "tracker");
-                Toast.makeText(getActivity(), "Click Schedule", Toast.LENGTH_SHORT).show();
+                Log.i("onOptionsItemSelected", "schedule");
                 Navigation.findNavController(view).navigate(R.id.action_teamDetailFragment_to_teamScheduleFragment, bundle);
                 return true;
             case R.id.action_teamDetail_story:
-                Log.i("onOptionsItemSelected", "tracker");
-                Toast.makeText(getActivity(), "Click Story", Toast.LENGTH_SHORT).show();
+                Log.i("onOptionsItemSelected", "story");
                 Navigation.findNavController(view).navigate(R.id.action_teamDetailFragment_to_teamStoryFragment, bundle);
                 return true;
             case R.id.action_teamDetail_picture:
-                Log.i("onOptionsItemSelected", "tracker");
-                Toast.makeText(getActivity(), "Click Picture", Toast.LENGTH_SHORT).show();
+                Log.i("onOptionsItemSelected", "picture");
 //                Navigation.findNavController(view).navigate(R.id.action_teamDetailFragment_to_teamScheduleFragment, bundle);
                 return true;
             default:
@@ -250,7 +244,7 @@ public class TeamDetailFragment extends Fragment {
     }
 
     private void doHttpRequestReservation(TeamModel teamModel) {
-        String url = "http://www.kbostat.co.kr/resource/reservation?teamNo=" + teamModel.getTeamNo() + "&parentInfraCategoryNo=1&page=0&size=9";
+        String url = "http://www.kbostat.co.kr/resource/reservation?teamNos=" + teamModel.getTeamNo() + "&parentInfraCategoryNo=1&page=0&size=9";
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
