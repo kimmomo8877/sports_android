@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_facilityDetailFragment_to_reservationFragment"
             app:destination="@id/reservationFragment" />
+        <action
+            android:id="@+id/action_facilityDetailFragment_to_facilityMapFragment"
+            app:destination="@id/facilityMapFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"

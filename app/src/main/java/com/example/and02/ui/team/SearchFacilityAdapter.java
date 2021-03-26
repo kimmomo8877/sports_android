@@ -118,11 +118,15 @@ public class SearchFacilityAdapter extends RecyclerView.Adapter<SearchFacilityAd
 
         if (kindList.equals("FACILITY")) {
             if (infraModelList.get(position).getName() != null) {
-                holder.getTextViewName().setText(infraModelList.get(position).getName());
+                if (!infraModelList.get(position).getName().equals("null")) {
+                    holder.getTextViewName().setText(infraModelList.get(position).getName());
+                }
             }
 
             if (infraModelList.get(position).getAddress() != null) {
-                holder.getTextViewAddress().setText(infraModelList.get(position).getAddress());
+                if (!infraModelList.get(position).getAddress().equals("null")) {
+                    holder.getTextViewAddress().setText(infraModelList.get(position).getAddress());
+                }
             }
 
             if (infraModelList.get(position).getAttachFile() != null) {
@@ -131,7 +135,9 @@ public class SearchFacilityAdapter extends RecyclerView.Adapter<SearchFacilityAd
             }
         } else if (kindList.equals("TEAM")) {
             if (teamModelList.get(position).getName() != null) {
-                holder.getTextViewName().setText(teamModelList.get(position).getName());
+                if (!teamModelList.get(position).getName().equals("null")) {
+                    holder.getTextViewName().setText(teamModelList.get(position).getName());
+                }
             }
             if (teamModelList.get(position).getAttachFile() != null) {
                 Uri uri = Uri.parse(teamModelList.get(position).getAttachFile());
@@ -139,7 +145,10 @@ public class SearchFacilityAdapter extends RecyclerView.Adapter<SearchFacilityAd
             }
 
             if (teamModelList.get(position).getBelongCode().getName() != null) {
-                holder.getTextViewAddress().setText(teamModelList.get(position).getBelongCode().getName());
+                if (!teamModelList.get(position).getBelongCode().getName().equals("null")) {
+                    holder.getTextViewAddress().setText(teamModelList.get(position).getBelongCode().getName());
+                }
+
             }
 
         }

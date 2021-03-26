@@ -125,7 +125,7 @@ public class ReservationFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-//        ((MainActivity) getActivity()).getSupportActionBar().setTitle("시설예약");
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("시설예약");
         View view = inflater.inflate(R.layout.fragment_reservation, container, false);
 
         final InfraModel infraModel = (InfraModel) getArguments().getSerializable("infraModel");

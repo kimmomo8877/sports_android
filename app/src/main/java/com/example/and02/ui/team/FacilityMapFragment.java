@@ -43,6 +43,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.lakue.lakuepopupactivity.PopupActivity;
+import com.lakue.lakuepopupactivity.PopupGravity;
+import com.lakue.lakuepopupactivity.PopupResult;
+import com.lakue.lakuepopupactivity.PopupType;
 import com.ornach.nobobutton.NoboButton;
 
 import org.json.JSONArray;
@@ -145,8 +149,27 @@ public class FacilityMapFragment extends Fragment implements OnMapReadyCallback 
         setButton(btnPhone);
         NoboButton btnMap = view.findViewById(R.id.button_facilityMap_map);
         setButton((btnMap));
+
+
         NoboButton btnSave = view.findViewById(R.id.button_facilityMap_save);
+        btnSave.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                startActivity(new Intent(Intent.ACTION_VIEW)
+//                        .setData(Uri.parse(infraModel.getFirstPrVideoUrl()))
+//                        .setPackage("com.google.android.youtube"));
+                Intent intent = new Intent(getContext(), PopupActivity.class);
+                intent.putExtra("type", PopupType.SELECT);
+                intent.putExtra("gravity", PopupGravity.LEFT);
+                intent.putExtra("title", "홍보영상");
+                intent.putExtra("content", "시청을 원하는 영상을 선택하세요");
+                intent.putExtra("buttonLeft", "영상(1)");
+                intent.putExtra("buttonRight", "영상(2)");
+                startActivityForResult(intent, 1);
+            }
+        });
         setButton((btnSave));
+
 
         return view;
     }
@@ -158,10 +181,10 @@ public class FacilityMapFragment extends Fragment implements OnMapReadyCallback 
         CameraUpdate cameraUpdate;
 // Updates the location and zoom of the MapView
         if (infraModel.getLatitude() == 0 || infraModel.getLongitude() == 0) {
-            cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(35.2599366728497, 128.5051723980738), 14);
+            cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(35.23862191772334, 128.69238760279316), 14);
             googleMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(35.2599366728497, 128.5051723980738))
-                    .title("마산대학교"));
+                    .position(new LatLng(35.23862191772334, 128.69238760279316))
+                    .title("경상남도도청"));
         } else {
             cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(infraModel.getLatitude(), infraModel.getLongitude()), 14);
             googleMap.addMarker(new MarkerOptions()
@@ -185,6 +208,35 @@ public class FacilityMapFragment extends Fragment implements OnMapReadyCallback 
         button.setBorderColor(Color.BLACK);
         button.setBorderWidth(2);
         button.setRadius(10);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_OK) {
+        if (requestCode == 1) {
+            PopupResult result = (PopupResult) data.getSerializableExtra("result");
+            if (result == PopupResult.LEFT) {
+                if (!infraModel.getFirstPrVideoUrl().equals("null")) {
+                    startActivity(new Intent(Intent.ACTION_VIEW)
+                            .setData(Uri.parse(infraModel.getFirstPrVideoUrl()))
+                            .setPackage("com.google.android.youtube"));
+                } else {
+                    Toast.makeText(getActivity(), "홍보영상이 등록되어 있지 않습니다.", Toast.LENGTH_LONG).show();
+                }
+
+            } else if (result == PopupResult.RIGHT) {
+                if (!infraModel.getSecondPrVideoUrl().equals("null")) {
+                    startActivity(new Intent(Intent.ACTION_VIEW)
+                            .setData(Uri.parse(infraModel.getSecondPrVideoUrl()))
+                            .setPackage("com.google.android.youtube"));
+                } else {
+                    Toast.makeText(getActivity(), "홍보영상이 등록되어 있지 않습니다.", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        }
+//        }
     }
 
 //    @Override

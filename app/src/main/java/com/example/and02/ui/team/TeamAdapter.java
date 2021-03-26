@@ -41,13 +41,13 @@ public class TeamAdapter  extends RecyclerView.Adapter<TeamAdapter.TeamViewHolde
 
             int pos1 = getAdapterPosition() ;
             if (pos1 != RecyclerView.NO_POSITION) {
-                if (infraModelList.get(pos1).getCheckVisiable() == View.INVISIBLE) {
-                    this.imageView.setVisibility(View.INVISIBLE);
-                    this.textViewTitle.setVisibility(View.INVISIBLE);
-                } else {
-                    this.imageView.setVisibility(View.VISIBLE);
-                    this.textViewTitle.setVisibility(View.VISIBLE);
-                }
+//                if (infraModelList.get(pos1).getCheckVisiable() == View.INVISIBLE) {
+//                    this.imageView.setVisibility(View.INVISIBLE);
+//                    this.textViewTitle.setVisibility(View.INVISIBLE);
+//                } else {
+//                    this.imageView.setVisibility(View.VISIBLE);
+//                    this.textViewTitle.setVisibility(View.VISIBLE);
+//                }
             }
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,8 +84,12 @@ public class TeamAdapter  extends RecyclerView.Adapter<TeamAdapter.TeamViewHolde
     public void onBindViewHolder(@NonNull TeamAdapter.TeamViewHolder holder, int position) {
 
         holder.getTextViewTitle().setText(infraModelList.get(position).getName());
-        Uri uri = Uri.parse(infraModelList.get(position).getAttachFile());
-        holder.getDraweeView().setImageURI(uri);
+        if (infraModelList.get(position).getAttachFile() != null) {
+            Uri uri = Uri.parse(infraModelList.get(position).getAttachFile());
+            holder.getDraweeView().setImageURI(uri);
+        } else {
+//            holder.getDraweeView().setImage;
+        }
     }
 
     @Override

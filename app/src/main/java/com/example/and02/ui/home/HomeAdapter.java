@@ -81,8 +81,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
   public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
 
     holder.getTextViewTitle().setText(homeModelList.get(position).getName());
-    Uri uri = Uri.parse(homeModelList.get(position).getAttachFile());
-    holder.getDraweeView().setImageURI(uri);
+    if (homeModelList.get(position).getAttachFile() != null) {
+      Uri uri = Uri.parse(homeModelList.get(position).getAttachFile());
+      holder.getDraweeView().setImageURI(uri);
+    } else {
+
+    }
   }
 
   @Override

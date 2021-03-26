@@ -34,13 +34,13 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/home_main" />
 
-            <ImageView
-                android:id="@+id/imageView_fragment_homeSub"
-                android:layout_width="160dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/main_sub" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView_fragment_homeSub"-->
+<!--                android:layout_width="160dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:src="@drawable/main_sub" />-->
 
         </RelativeLayout>
 

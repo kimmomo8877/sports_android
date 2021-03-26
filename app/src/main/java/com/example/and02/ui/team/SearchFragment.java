@@ -1,5 +1,6 @@
 package com.example.and02.ui.team;
 
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -98,6 +99,7 @@ public class SearchFragment  extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState){
         ((MainActivity) getActivity()).getSupportActionBar().setTitle("검색");
+        ((MainActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorWhite)));
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());

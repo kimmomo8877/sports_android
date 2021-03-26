@@ -89,7 +89,7 @@
             app:nb_borderColor="#FFFFFF"
             app:nb_borderWidth="2dp"
             app:nb_radius="5dp"
-            app:nb_text="저장"
+            app:nb_text="홍보영상"
             app:nb_textColor="#FFF"
             app:nb_focusColor="#B83CC3"/>
 

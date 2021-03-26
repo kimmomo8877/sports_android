@@ -1,8 +1,5 @@
 package com.example.and02.ui.home;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.example.and02.ui.common.ChargeModel;
 import com.example.and02.ui.common.CodeModel;
 
@@ -10,7 +7,7 @@ import org.json.JSONArray;
 
 import java.io.Serializable;
 
-public class InfraModel implements Serializable, Parcelable {
+public class InfraModel implements Serializable {
     private String infraNo;
     private int infraCategoryNo;
     private String parentInfraNo;
@@ -18,7 +15,7 @@ public class InfraModel implements Serializable, Parcelable {
     private InfraCategoryModel infraCategoryModel;
     private CodeModel sportCode;
     private InfraModel childInfras[];
-    private JSONArray attachFiles;
+    private transient JSONArray attachFiles;
     private String attachFile;
     private String name;
     private String phoneNumber;
@@ -31,11 +28,15 @@ public class InfraModel implements Serializable, Parcelable {
     private String refundPolicyDescription;
     private double latitude;
     private double longitude;
-    private ChargeModel charges[];
+    private transient JSONArray charges;
+    private ChargeModel[] chargesModel;
     private int reservationCnt;
     private CodeModel regionCode;
     private boolean deleteYn;
     private int checkVisiable;
+    private String firstPrVideoUrl;
+    private String secondPrVideoUrl;
+    private String thirdPrVideoUrl;
 
     public int getCheckVisiable() {
         return checkVisiable;
@@ -205,11 +206,11 @@ public class InfraModel implements Serializable, Parcelable {
         this.longitude = longitude;
     }
 
-    public ChargeModel[] getCharges() {
+    public JSONArray getCharges() {
         return charges;
     }
 
-    public void setCharges(ChargeModel[] charges) {
+    public void setCharges(JSONArray charges) {
         this.charges = charges;
     }
 
@@ -237,13 +238,35 @@ public class InfraModel implements Serializable, Parcelable {
         this.deleteYn = deleteYn;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getFirstPrVideoUrl() {
+        return firstPrVideoUrl;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void setFirstPrVideoUrl(String firstPrVideoUrl) {
+        this.firstPrVideoUrl = firstPrVideoUrl;
+    }
 
+    public String getSecondPrVideoUrl() {
+        return secondPrVideoUrl;
+    }
+
+    public void setSecondPrVideoUrl(String secondPrVideoUrl) {
+        this.secondPrVideoUrl = secondPrVideoUrl;
+    }
+
+    public String getThirdPrVideoUrl() {
+        return thirdPrVideoUrl;
+    }
+
+    public void setThirdPrVideoUrl(String thirdPrVideoUrl) {
+        this.thirdPrVideoUrl = thirdPrVideoUrl;
+    }
+
+    public ChargeModel[] getChargesModel() {
+        return chargesModel;
+    }
+
+    public void setChargesModel(ChargeModel[] chargesModel) {
+        this.chargesModel = chargesModel;
     }
 }

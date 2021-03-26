@@ -79,8 +79,12 @@ public class TouringAdapter extends RecyclerView.Adapter<TouringAdapter.TouringV
     public void onBindViewHolder(@NonNull TouringAdapter.TouringViewHolder holder, int position) {
 
         holder.getTextViewTitle().setText(infraModelList.get(position).getName());
-        Uri uri = Uri.parse(infraModelList.get(position).getAttachFile());
-        holder.getDraweeView().setImageURI(uri);
+        if (infraModelList.get(position).getAttachFile() != null) {
+            Uri uri = Uri.parse(infraModelList.get(position).getAttachFile());
+            holder.getDraweeView().setImageURI(uri);
+        } else {
+
+        }
     }
 
     @Override

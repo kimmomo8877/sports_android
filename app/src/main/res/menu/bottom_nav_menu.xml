@@ -3,28 +3,34 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/home_icon"
         android:title="홈" />
 
     <item
         android:id="@+id/navigation_team"
-        android:icon="@drawable/ic_calendar_alt"
+        android:icon="@drawable/team_icon"
         android:title="전지훈련팀" />
 
     <item
         android:id="@+id/navigation_sport"
-        android:icon="@drawable/ic_heart"
+        android:icon="@drawable/sport_icon"
         android:title="스포츠재활" />
 
     <item
         android:id="@+id/navigation_touring"
-        android:icon="@drawable/ic_plane"
+        android:icon="@drawable/touring_icon"
         android:title="투어링" />
 
     <item
         android:id="@+id/navigation_my_page"
-        android:icon="@drawable/ic_user_circle"
+        android:icon="@drawable/my_icon"
         android:title="My" />
 
 
 </menu>
+
+    <!--        android:icon="@drawable/ic_home_black_24dp"-->
+    <!--        android:icon="@drawable/ic_calendar_alt"-->
+    <!--        android:icon="@drawable/ic_heart"-->
+    <!--        android:icon="@drawable/ic_plane"-->
+    <!--        android:icon="@drawable/ic_user_circle"-->

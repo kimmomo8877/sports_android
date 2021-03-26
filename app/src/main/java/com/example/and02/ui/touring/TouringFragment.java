@@ -26,6 +26,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.and02.MainActivity;
 import com.example.and02.R;
+import com.example.and02.ui.common.ChargeModel;
+import com.example.and02.ui.common.CodeModel;
 import com.example.and02.ui.common.ListModel;
 import com.example.and02.ui.home.InfraCategoryModel;
 import com.example.and02.ui.home.InfraModel;
@@ -760,6 +762,26 @@ public class TouringFragment extends Fragment {
         InfraCategoryModel infraCategoryModel = new InfraCategoryModel();
         infraCategoryModel.setName(infraCategoryObject.getString("name"));
         infraModel.setInfraCategoryModel(infraCategoryModel);
+        infraModel.setFirstPrVideoUrl(data.getString("firstPrVideoUrl"));
+        infraModel.setSecondPrVideoUrl(data.getString("secondPrVideoUrl"));
+        infraModel.setThirdPrVideoUrl(data.getString("thirdPrVideoUrl"));
+
+        infraModel.setCharges(data.getJSONArray("charges"));
+        if (infraModel.getCharges().length() > 0) {
+            ArrayList<ChargeModel> charges = new ArrayList<ChargeModel>();
+            for (int i = 0; i < infraModel.getCharges().length(); i++) {
+                JSONObject chargeObject = infraModel.getCharges().getJSONObject(i);
+                ChargeModel chargeModel = new ChargeModel();
+                chargeModel.setCost(chargeObject.getInt("cost"));
+                CodeModel codeModel = new CodeModel();
+                codeModel.setName(chargeObject.getJSONObject("chargeTypeCode").getString("name"));
+                chargeModel.setChargeTypeCode(codeModel);
+                charges.add(chargeModel);
+            }
+            infraModel.setChargesModel((ChargeModel[]) charges.toArray());
+
+        }
+
         if (infraModel.getAttachFiles().length() > 0) {
             JSONObject attachObject = infraModel.getAttachFiles().getJSONObject(0);
             StringBuilder sb = new StringBuilder(imageUrl);
@@ -768,7 +790,7 @@ public class TouringFragment extends Fragment {
             return infraModel;
         }
 
-        return null;
+        return infraModel;
     }
 
 }

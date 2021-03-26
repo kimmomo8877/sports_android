@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -36,6 +37,10 @@ import com.example.and02.ui.common.ListModel;
 import com.example.and02.ui.common.SharedUserData;
 import com.example.and02.ui.home.InfraModel;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.lakue.lakuepopupactivity.PopupActivity;
+import com.lakue.lakuepopupactivity.PopupGravity;
+import com.lakue.lakuepopupactivity.PopupResult;
+import com.lakue.lakuepopupactivity.PopupType;
 import com.ornach.nobobutton.NoboButton;
 import com.squareup.picasso.Picasso;
 
@@ -48,11 +53,15 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class FacilityDetailFragment extends Fragment {
 
 //    private RequestQueue requestQueue;
 
 //    private String imageUrl = "http://www.kbostat.co.kr/resource/static-file";
+
+    private InfraModel infraModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,15 +81,15 @@ public class FacilityDetailFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle item selection
-        Log.i("onOptionsItemSelected","yes");
+        Log.i("onOptionsItemSelected", "yes");
         switch (item.getItemId()) {
             case R.id.home:
-                Log.i("onOptionsItemSelected","back");
+                Log.i("onOptionsItemSelected", "back");
                 getActivity().onBackPressed();
                 return true;
             case R.id.button_tracker_action:
-                Log.i("onOptionsItemSelected","tracker");
-                Toast.makeText(getActivity(), "Calls Icon Click", Toast.LENGTH_SHORT).show();
+                Log.i("onOptionsItemSelected", "tracker");
+                Toast.makeText(getActivity(), "Calls Icon Click", LENGTH_SHORT).show();
                 return true;
             default:
                 Log.i("itemId", String.valueOf(item.getItemId()));
@@ -94,7 +103,7 @@ public class FacilityDetailFragment extends Fragment {
         ((MainActivity) getActivity()).getSupportActionBar().setTitle("시설상세");
         View view = inflater.inflate(R.layout.fragment_facilitydetail, container, false);
 
-        final InfraModel infraModel = (InfraModel) getArguments().getSerializable("infraModel");
+        infraModel = (InfraModel) getArguments().getSerializable("infraModel");
 
         if (infraModel.getAttachFile() != null) {
             Uri uri = Uri.parse(infraModel.getAttachFile());
@@ -121,7 +130,7 @@ public class FacilityDetailFragment extends Fragment {
                     startActivity(intent);
                 }
             }
-        }) ;
+        });
         setButton(btnResv);
         NoboButton btnPhone = view.findViewById(R.id.button_facilityDetail_phone);
         btnPhone.setOnClickListener(new Button.OnClickListener() {
@@ -129,13 +138,44 @@ public class FacilityDetailFragment extends Fragment {
             public void onClick(View view) {
                 String tel = "tel:" + infraModel.getPhoneNumber();
                 Log.i("phone call", tel);
-                startActivity(new Intent("android.intent.action.DIAL",Uri.parse(tel)));
+                startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel)));
             }
-        }) ;
+        });
         setButton(btnPhone);
+
         NoboButton btnMap = view.findViewById(R.id.button_facilityDetail_map);
+        btnMap.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("MapButton", "Map button click");
+                if (Double.isNaN(infraModel.getLatitude()) && Double.isNaN(infraModel.getLongitude())) {
+                    Toast.makeText(getActivity(), "위치 정보가 등록 되어 있지 않습니다.", Toast.LENGTH_LONG).show();
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("infraModel", infraModel);
+                    Navigation.findNavController(view).navigate(R.id.action_facilityDetailFragment_to_facilityMapFragment, bundle);
+                }
+            }
+        });
         setButton((btnMap));
+
         NoboButton btnSave = view.findViewById(R.id.button_facilityDetail_save);
+        btnSave.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                startActivity(new Intent(Intent.ACTION_VIEW)
+//                        .setData(Uri.parse(infraModel.getFirstPrVideoUrl()))
+//                        .setPackage("com.google.android.youtube"));
+                Intent intent = new Intent(getContext(), PopupActivity.class);
+                intent.putExtra("type", PopupType.SELECT);
+                intent.putExtra("gravity", PopupGravity.LEFT);
+                intent.putExtra("title", "홍보영상");
+                intent.putExtra("content", "시청을 원하는 영상을 선택하세요");
+                intent.putExtra("buttonLeft", "영상(1)");
+                intent.putExtra("buttonRight", "영상(2)");
+                startActivityForResult(intent, 1);
+            }
+        });
         setButton((btnSave));
 
         TextView tvTitle = view.findViewById(R.id.textView_facilityDetail_title);
@@ -181,6 +221,35 @@ public class FacilityDetailFragment extends Fragment {
 //        doHttpRequest();
 
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_OK) {
+        if (requestCode == 1) {
+            PopupResult result = (PopupResult) data.getSerializableExtra("result");
+            if (result == PopupResult.LEFT) {
+                if (!infraModel.getFirstPrVideoUrl().equals("null")) {
+                    startActivity(new Intent(Intent.ACTION_VIEW)
+                            .setData(Uri.parse(infraModel.getFirstPrVideoUrl()))
+                            .setPackage("com.google.android.youtube"));
+                } else {
+                    Toast.makeText(getActivity(), "홍보영상이 등록되어 있지 않습니다.", Toast.LENGTH_LONG).show();
+                }
+
+            } else if (result == PopupResult.RIGHT) {
+                if (!infraModel.getSecondPrVideoUrl().equals("null")) {
+                    startActivity(new Intent(Intent.ACTION_VIEW)
+                            .setData(Uri.parse(infraModel.getSecondPrVideoUrl()))
+                            .setPackage("com.google.android.youtube"));
+                } else {
+                    Toast.makeText(getActivity(), "홍보영상이 등록되어 있지 않습니다.", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        }
+//        }
     }
 
     public void setButton(NoboButton button) {

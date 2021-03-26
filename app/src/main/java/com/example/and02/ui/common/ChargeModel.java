@@ -9,6 +9,7 @@ public class ChargeModel implements Serializable {
     private String infraNo;
     private int timeUnit;
     private int cost;
+    private CodeModel chargeTypeCode;
 
     public String getChargeNo() {
         return chargeNo;
@@ -48,5 +49,13 @@ public class ChargeModel implements Serializable {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    public CodeModel getChargeTypeCode() {
+        return chargeTypeCode;
+    }
+
+    public void setChargeTypeCode(CodeModel chargeTypeCode) {
+        this.chargeTypeCode = chargeTypeCode;
     }
 }

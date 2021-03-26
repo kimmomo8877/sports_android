@@ -185,7 +185,7 @@ public class SearchResultFragment extends Fragment  {
 
     private void doHttpRequestFacility() {
 
-        String url = "http://www.kbostat.co.kr/resource/infra?searchWord=" + getArguments().getString("searchWord");;
+        String url = "http://www.kbostat.co.kr/resource/infra?searchWord=" + getArguments().getString("searchWord") + "&page=1&size=20";
         Log.i("url_facility", url);
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -234,7 +234,7 @@ public class SearchResultFragment extends Fragment  {
 
     private void doHttpRequestTeam() {
 
-        String url = "http://www.kbostat.co.kr/resource/team?searchWord=" + getArguments().getString("searchWord");;
+        String url = "http://www.kbostat.co.kr/resource/team?searchWord=" + getArguments().getString("searchWord") + "&page=1&size=20";
         Log.i("url_team", url);
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override

@@ -94,7 +94,7 @@
                     app:nb_borderColor="#FFFFFF"
                     app:nb_borderWidth="2dp"
                     app:nb_radius="5dp"
-                    app:nb_text="저장"
+                    app:nb_text="홍보영상"
                     app:nb_textColor="#FFF"
                     app:nb_focusColor="#B83CC3"/>
 
@@ -210,8 +210,9 @@
             <TextView
                 android:id="@+id/textView_facilityDetail_sportDetail"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp"
                 android:text=""
                 android:textSize="18sp" />
@@ -239,8 +240,9 @@
             <TextView
                 android:id="@+id/textView_facilityDetail_facilityDetail"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp"
                 android:text=""
                 android:textSize="18sp" />
@@ -268,8 +270,9 @@
             <TextView
                 android:id="@+id/textView_facilityDetail_etcDetail"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp"
                 android:text=""
                 android:textSize="18sp" />
@@ -297,8 +300,9 @@
             <TextView
                 android:id="@+id/textView_facilityDetail_locationDetail"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp"
                 android:text=""
                 android:textSize="18sp" />
