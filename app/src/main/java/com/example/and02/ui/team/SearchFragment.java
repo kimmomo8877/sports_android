@@ -99,7 +99,7 @@ public class SearchFragment  extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState){
         ((MainActivity) getActivity()).getSupportActionBar().setTitle("검색");
-        ((MainActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorWhite)));
+//        ((MainActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorWhite)));
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
@@ -124,7 +124,7 @@ public class SearchFragment  extends Fragment {
                 if (response != null)
                 {
                     try {
-                        response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -149,7 +149,7 @@ public class SearchFragment  extends Fragment {
                 result_orig.addAll(result);
                 favoriteAdapter.setFavoriteModelList_orig(result_orig);
                 favoriteRecyclerView.setAdapter(favoriteAdapter);
-                Log.i("TEST", response);
+                Log.i("Search Fragment", response);
 
             }
 

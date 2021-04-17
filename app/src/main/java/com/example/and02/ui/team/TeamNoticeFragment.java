@@ -116,7 +116,7 @@ public class TeamNoticeFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -142,7 +142,7 @@ public class TeamNoticeFragment extends Fragment {
                 result_orig.addAll(result);
                 teamNoticeAdapter.setBoardModelList_orig(result_orig);
                 teamNoticeRecyclerView.setAdapter(teamNoticeAdapter);
-                Log.i("TEST", response);
+                Log.i("TeamNotice", response);
 
             }
 
@@ -183,6 +183,4 @@ public class TeamNoticeFragment extends Fragment {
         }
         return boardModel;
     }
-
-
 }

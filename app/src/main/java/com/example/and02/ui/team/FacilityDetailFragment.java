@@ -58,7 +58,6 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class FacilityDetailFragment extends Fragment {
 
 //    private RequestQueue requestQueue;
-
 //    private String imageUrl = "http://www.kbostat.co.kr/resource/static-file";
 
     private InfraModel infraModel;

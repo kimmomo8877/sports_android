@@ -117,7 +117,7 @@ public class TeamScheduleFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -141,7 +141,7 @@ public class TeamScheduleFragment extends Fragment {
                 result_orig.addAll(result);
 //                boardAdapter.setBoardModelList_orig(result_orig);
                 teamScheduleRecyclerView.setAdapter(teamScheduleAdapter);
-                Log.i("TEST", response);
+                Log.i("TeamSchedule", response);
 
             }
 

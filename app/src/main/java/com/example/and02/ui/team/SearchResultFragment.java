@@ -140,46 +140,6 @@ public class SearchResultFragment extends Fragment  {
             }
         });
 
-        // (상세 필터 기능) 추가 작업 필요
-//        NoboButton btnKind = view.findViewById(R.id.button_searchResult_kind);
-//        setButton((btnKind));
-//        btnKind.setOnClickListener(new Button.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                SearchResultBottomFragment searchResultBottomFragment =
-//                        SearchResultBottomFragment.newInstance();
-//                searchResultBottomFragment.show(getFragmentManager() ,
-//                        searchResultBottomFragment.TAG);
-//
-////                public void showBottomSheet(View view) {
-////                    SearchResultBottomFragment searchResultBottomFragment =
-////                            SearchResultBottomFragment.newInstance();
-////                    searchResultBottomFragment.show(getSupportFragmentManager(),
-////                            searchResultBottomFragment.TAG);
-////                }
-//            }
-//        });
-//
-//        NoboButton btnRegion = view.findViewById(R.id.button_searchResult_region);
-//        setButton((btnRegion));
-//        btnRegion.setOnClickListener(new Button.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                SearchResultBottomFragment searchResultBottomFragment =
-//                        SearchResultBottomFragment.newInstance();
-//                searchResultBottomFragment.show(getFragmentManager() ,
-//                        searchResultBottomFragment.TAG);
-//
-////                public void showBottomSheet(View view) {
-////                    SearchResultBottomFragment searchResultBottomFragment =
-////                            SearchResultBottomFragment.newInstance();
-////                    searchResultBottomFragment.show(getSupportFragmentManager(),
-////                            searchResultBottomFragment.TAG);
-////                }
-//            }
-//        });
-
-
         return view;
     }
 
@@ -194,7 +154,7 @@ public class SearchResultFragment extends Fragment  {
                 if (response != null)
                 {
                     try {
-                        response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -218,7 +178,7 @@ public class SearchResultFragment extends Fragment  {
                 result_orig.addAll(result);
                 searchFacilityAdapter.setInfraModelList_orig(result_orig);
                 searchFacilityRecyclerView.setAdapter(searchFacilityAdapter);
-                Log.i("TEST", response);
+                Log.i("SearchResultFragment", response);
 
             }
 
@@ -243,7 +203,7 @@ public class SearchResultFragment extends Fragment  {
                 if (response != null)
                 {
                     try {
-                        response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -265,7 +225,7 @@ public class SearchResultFragment extends Fragment  {
                 List<TeamModel> result_orig = new ArrayList<>();
                 result_orig.addAll(result);
                 searchFacilityAdapter.setTeamModelList_orig(result_orig);
-                Log.i("TEST", response);
+                Log.i("SearchResultFragment", response);
 
             }
 
@@ -383,7 +343,3 @@ public class SearchResultFragment extends Fragment  {
     }
 
 }
-
-
-// http://www.kbostat.co.kr/resource/infra?serachWord=searchWord"
-// http://www.kbostat.co.kr/resource/team?serachWord=searchWord"

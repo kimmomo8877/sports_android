@@ -172,7 +172,7 @@ public class TeamLoginedFragment extends Fragment {
                 if (response != null)
                 {
                     try {
-                        response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -195,7 +195,7 @@ public class TeamLoginedFragment extends Fragment {
                 result_orig.addAll(result);
                 sportAdapter.setInfraModelList_orig(result_orig);
                 sportRecyclerView.setAdapter(sportAdapter);
-                Log.i("TEST", response);
+                Log.i("TeamLogin", response);
 
             }
 
@@ -218,7 +218,7 @@ public class TeamLoginedFragment extends Fragment {
                 if (response != null)
                 {
                     try {
-                        response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -242,7 +242,7 @@ public class TeamLoginedFragment extends Fragment {
                 facilityAdapter.setInfraModelList_orig(result_orig);
                 facilityRecyclerView.setAdapter(facilityAdapter);
 
-                Log.i("TEST", response);
+                Log.i("TeamLogin", response);
 
             }
 
@@ -265,12 +265,12 @@ public class TeamLoginedFragment extends Fragment {
                 if (response != null)
                 {
                     try {
-                        response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
                 }
-//        List<ListModel> result = new ArrayList<>();
+
                 try {
                     JSONArray root = new JSONArray(response);
                     ListModel menuModel = new ListModel();
@@ -296,7 +296,7 @@ public class TeamLoginedFragment extends Fragment {
                         sportAdapter.getFilter().filter(filterWord.getMenu());
                     }
                 }) ;
-                Log.i("TEST", response);
+                Log.i("TeamLogin", response);
 
                 sportMenuRecyclerView.setAdapter(sportMenuAdapter);
 
@@ -322,12 +322,12 @@ public class TeamLoginedFragment extends Fragment {
                 if (response != null)
                 {
                     try {
-                        response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
                 }
-//        List<ListModel> result = new ArrayList<>();
+
                 try {
                     JSONArray root = new JSONArray(response);
                     ListModel menuModel = new ListModel();
@@ -353,7 +353,6 @@ public class TeamLoginedFragment extends Fragment {
                         facilityAdapter.getFilter().filter(filterWord.getMenu());
                     }
                 }) ;
-                Log.i("TEST", response);
 
                 facilityMenuRecyclerView.setAdapter(facilityMenuAdapter);
 
@@ -417,5 +416,4 @@ public class TeamLoginedFragment extends Fragment {
 
         return infraModel;
     }
-
 }

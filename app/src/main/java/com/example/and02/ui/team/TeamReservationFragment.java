@@ -115,7 +115,7 @@ public class TeamReservationFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -160,7 +160,7 @@ public class TeamReservationFragment extends Fragment {
                 result_orig.addAll(result);
                 teamReservationAdapter.setReservationModelList_orig(result_orig);
                 teamReservationRecyclerView.setAdapter(teamReservationAdapter);
-                Log.i("TEST", response);
+                Log.i("TeamReserv", response);
 
             }
 

@@ -232,7 +232,6 @@ public class HomeFragment extends Fragment {
 
                 if (response != null) {
                     try {
-//                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
                         response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
@@ -256,7 +255,7 @@ public class HomeFragment extends Fragment {
                 result_orig.addAll(result);
                 sportRAdapter.setHomeModelList_orig(result_orig);
                 sportRRecyclerView.setAdapter(sportRAdapter);
-                Log.i("SportR : ", response);
+                Log.i("Sport : ", response);
 
             }
 
@@ -278,7 +277,6 @@ public class HomeFragment extends Fragment {
 
                 if (response != null) {
                     try {
-//                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
                         response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
@@ -303,7 +301,7 @@ public class HomeFragment extends Fragment {
                 hotelRAdapter.setHomeModelList_orig(result_orig);
                 hotelRRecyclerView.setAdapter(hotelRAdapter);
 
-                Log.i("TEST", response);
+                Log.i("Hotel : ", response);
 
             }
 
@@ -325,7 +323,6 @@ public class HomeFragment extends Fragment {
 
                 if (response != null) {
                     try {
-//                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
                         response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
@@ -350,7 +347,7 @@ public class HomeFragment extends Fragment {
                 foodRAdapter.setHomeModelList_orig(result_orig);
                 foodRRecyclerView.setAdapter(foodRAdapter);
 
-                Log.i("TEST", response);
+                Log.i("Food : ", response);
 
             }
 
@@ -372,13 +369,12 @@ public class HomeFragment extends Fragment {
 
                 if (response != null) {
                     try {
-//                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
                         response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
                 }
-//        List<ListModel> result = new ArrayList<>();
+
                 try {
                     JSONArray root = new JSONArray(response);
                     ListModel menuModel = new ListModel();
@@ -404,10 +400,9 @@ public class HomeFragment extends Fragment {
                         sportRAdapter.getFilter().filter(filterWord.getMenu());
                     }
                 });
-                Log.i("TEST", response);
+                Log.i("SportMenu", response);
 
                 sportMenuRecyclerView.setAdapter(sportMenuAdapter);
-
 
             }
 
@@ -429,13 +424,12 @@ public class HomeFragment extends Fragment {
 
                 if (response != null) {
                     try {
-//                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
                         response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
                 }
-//        List<ListModel> result = new ArrayList<>();
+
                 try {
                     JSONArray root = new JSONArray(response);
                     ListModel menuModel = new ListModel();
@@ -461,11 +455,10 @@ public class HomeFragment extends Fragment {
                         hotelRAdapter.getFilter().filter(filterWord.getMenu());
                     }
                 });
-                Log.i("TEST", response);
 
                 hotelMenuRecyclerView.setAdapter(hotelMenuAdapter);
 
-                Log.i("TEST", response);
+                Log.i("Hotel Menu", response);
 
             }
 
@@ -487,13 +480,12 @@ public class HomeFragment extends Fragment {
 
                 if (response != null) {
                     try {
-//                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
                         response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
                 }
-//        List<ListModel> result = new ArrayList<>();
+
                 try {
                     JSONArray root = new JSONArray(response);
                     ListModel menuModel = new ListModel();
@@ -519,11 +511,10 @@ public class HomeFragment extends Fragment {
                         foodRAdapter.getFilter().filter(filterWord.getMenu());
                     }
                 });
-                Log.i("TEST", response);
 
                 foodMenuRecyclerView.setAdapter(foodMenuAdapter);
 
-                Log.i("TEST", response);
+                Log.i("FoodMenu", response);
 
             }
 
@@ -588,11 +579,3 @@ public class HomeFragment extends Fragment {
     }
 
 }
-
-
-//  @Override
-//  public void onActivityCreated(Bundle savedInstanceState) {
-//    super.onActivityCreated(savedInstanceState);
-//    setHasOptionsMenu(true);
-//    Log.i("onActivityCreated", "inside on activity created");
-//  }

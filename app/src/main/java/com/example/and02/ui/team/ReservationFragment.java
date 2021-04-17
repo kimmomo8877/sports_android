@@ -213,25 +213,11 @@ public class ReservationFragment extends Fragment {
             }
         });
 
-
-//        btnEnd = view.findViewById(R.id.button_reservation_end);
-//        btnEnd.setOnClickListener(new Button.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.i("endButton", "endButton");
-//                typeChk = 2;
-//                new DatePickerDialog(getContext(), setDate, reservationCalendar.get(Calendar.YEAR),reservationCalendar.get(reservationCalendar.MONTH), reservationCalendar.get(Calendar.DAY_OF_MONTH)).show();
-//            }
-//        }) ;
-
-
-//        requestQueue = Volley.newRequestQueue(view.getContext());
-//        doHttpRequest();
-
         return view;
     }
 
     private int todayCompareTo(String endDate) {
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         Date time = new Date();
         String current = format.format(time);
@@ -246,13 +232,15 @@ public class ReservationFragment extends Fragment {
             end = format.parse(endDate);
         } catch (ParseException e) {
             e.printStackTrace();
-        } //dd("current:"+current); //current: 2020-09-15 10:18:16 //dd("today:"+today); //tody:Tue Sep 15 10:18:16 KST 2020 //dd("endDate:"+endDate); //dd("end:"+end);
+        }
+
         int result = today.compareTo(end);
         return result;
+
     }
 
-
     private int dateCompareTo(String startDate, String endDate) {
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         Date today = null;
         try {
@@ -268,6 +256,7 @@ public class ReservationFragment extends Fragment {
         }
         int result = today.compareTo(end);
         return result;
+
     }
 
 
@@ -298,7 +287,6 @@ public class ReservationFragment extends Fragment {
             public byte[] getBody() {
                 Map<String, Object> reservationData = new HashMap<>();
                 reservationData.put("infraNo", reservationModel.getInfraNo());
-
 
                 Gson gson = new Gson();
                 String jsonBody = gson.toJson(reservationData);

@@ -116,7 +116,7 @@ public class TeamStoryFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -142,7 +142,7 @@ public class TeamStoryFragment extends Fragment {
                 result_orig.addAll(result);
                 teamStoryAdapter.setBoardModelList_orig(result_orig);
                 teamStoryRecyclerView.setAdapter(teamStoryAdapter);
-                Log.i("TEST", response);
+                Log.i("TeamStory", response);
 
             }
 

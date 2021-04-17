@@ -202,7 +202,7 @@ public class TeamDetailFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -228,7 +228,7 @@ public class TeamDetailFragment extends Fragment {
                 result_orig.addAll(result);
                 boardAdapter.setBoardModelList_orig(result_orig);
                 boardRecyclerView.setAdapter(boardAdapter);
-                Log.i("TEST", response);
+                Log.i("NoticeBoard", response);
 
             }
 
@@ -251,7 +251,7 @@ public class TeamDetailFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -293,7 +293,7 @@ public class TeamDetailFragment extends Fragment {
                 result_orig.addAll(result);
                 reservationAdapter.setReservationModelList_orig(result_orig);
                 reservationRecyclerView.setAdapter(reservationAdapter);
-                Log.i("TEST", response);
+                Log.i("Reservation Board", response);
 
             }
 
@@ -316,7 +316,7 @@ public class TeamDetailFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -340,7 +340,7 @@ public class TeamDetailFragment extends Fragment {
                 result_orig.addAll(result);
                 teamScheduleAdapter.setScheduleModelList_orig(result_orig);
                 teamScheduleRecyclerView.setAdapter(teamScheduleAdapter);
-                Log.i("TEST", response);
+                Log.i("Schedule Board", response);
 
             }
 
@@ -363,7 +363,7 @@ public class TeamDetailFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -389,7 +389,7 @@ public class TeamDetailFragment extends Fragment {
                 result_orig.addAll(result);
                 teamStoryAdapter.setBoardModelList_orig(result_orig);
                 teamStoryRecyclerView.setAdapter(teamStoryAdapter);
-                Log.i("TEST", response);
+                Log.i("TeamStoryBoard", response);
 
             }
 

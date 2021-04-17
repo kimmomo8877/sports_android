@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:fadingEdge="none"
     android:fillViewport="true"
     android:scrollbars="none"
-    android:fadingEdge="none"
-    android:background="#ffffff"
 
     tools:context=".MainActivity">
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="#ffffff"
+        android:orientation="vertical"
         tools:context=".ui.home.HomeFragment">
 
 
-            <ImageView
-                android:id="@+id/imageView_fragment_teamMain"
-                android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/team_main" />
+        <ImageView
+            android:id="@+id/imageView_fragment_teamMain"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/team_main" />
 
         <LinearLayout
             android:id="@+id/linear_team_search"
@@ -39,156 +37,168 @@
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <com.ornach.nobobutton.NoboButton
                 android:id="@+id/button_team_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
-                app:nb_textSize="18dp"
-                app:nb_drawableResource="@android:drawable/ic_menu_search"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
                 app:nb_backgroundColor="#FFFFFF"
                 app:nb_borderColor="#000000"
                 app:nb_borderWidth="1dp"
+                app:nb_drawableResource="@android:drawable/ic_menu_search"
+                app:nb_focusColor="#000000"
                 app:nb_radius="5dp"
                 app:nb_text="시설이나 팀을 검색해 보세요"
                 app:nb_textColor="#000000"
-                app:nb_focusColor="#000000"/>
+                app:nb_textSize="18dp" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linear_team_reservation"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:id="@+id/imageView_team_reservationImage"
-                android:src="@drawable/my_icon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"/>
+            android:layout_gravity="center"
+            android:layout_margin="6dp"
+            app:cardCornerRadius="4dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/textView_team_reservationTitle"
+                android:id="@+id/linear_team_reservation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView_team_reservationImage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/no_image" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingLeft="10dp"
-                    android:textSize="18dp"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/textView_team_reservationText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingLeft="10dp"
-                    android:textSize="14dp"
-                    android:textStyle="bold"/>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView_team_reservationTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView_team_reservationText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView_team_reservationImage2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_map"
+                    android:paddingLeft="10dp"/>
+
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imageView_team_reservationImage2"
-                android:src="@drawable/my_icon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"/>
-
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/intro_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/intro_recycler_view"/>
+            android:scrollbars="horizontal" />
 
         <TextView
             android:id="@+id/textView_fragment_teamSport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="스포츠시설"
-            android:paddingTop="5dp"
             android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="스포츠시설"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamSportMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamSportMenu"/>
+            android:scrollbars="horizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamSport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamSport"/>
+            android:scrollbars="horizontal" />
 
         <TextView
             android:id="@+id/textView_fragment_teamFacility"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
             android:text="부대 시설"
-            android:paddingTop="5dp"
-            android:paddingLeft="10dp"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamFacilityMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamFacilityMenu"/>
+            android:scrollbars="horizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamFacility"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamFacility"/>
+            android:scrollbars="horizontal" />
 
-        <TextView
-            android:id="@+id/textView_fragment_teamStory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="전지훈련팀 스토리"
-            android:paddingTop="5dp"
-            android:paddingLeft="10dp"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+<!--        <TextView-->
+<!--            android:id="@+id/textView_fragment_teamStory"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:paddingTop="5dp"-->
+<!--            android:text="전지훈련팀 스토리"-->
+<!--            android:textSize="20dp"-->
+<!--            android:textStyle="bold" />-->
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamStoryMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamStoryMenu"/>
+            android:scrollbars="horizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamStory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamStory"/>
+            android:scrollbars="horizontal" />
 
 
         <TextView
@@ -196,93 +206,93 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="주변 부대시설"
-            android:paddingTop="5dp"
             android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="주변 부대시설"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamFacilityDistanceMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamFacilityDistanceMenu"/>
+            android:scrollbars="horizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamFacilityDistance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamFacilityDistance"/>
+            android:scrollbars="horizontal" />
 
         <TextView
             android:id="@+id/textView_fragment_teamHotelDistance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="주변 숙소"
-            android:paddingTop="5dp"
             android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="주변 숙소"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamHotelDistanceMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamHotelDistanceMenu"/>
+            android:scrollbars="horizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamHotelDistance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamHotelDistance"/>
+            android:scrollbars="horizontal" />
 
         <TextView
             android:id="@+id/textView_fragment_teamFoodDistance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="주변 맛집"
-            android:paddingTop="5dp"
             android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="주변 맛집"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamFoodDistanceMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamFoodDistanceMenu"/>
+            android:scrollbars="horizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamFoodDistance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamFoodDistance"/>
+            android:scrollbars="horizontal" />
 
         <TextView
             android:id="@+id/textView_fragment_teamSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="내가 저장한 장소"
-            android:paddingTop="5dp"
             android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="내가 저장한 장소"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fragment_teamSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:id="@+id/recycler_fragment_teamSave"/>
+            android:scrollbars="horizontal" />
 
 
     </LinearLayout>
