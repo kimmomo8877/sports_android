@@ -106,7 +106,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 //    this.btnTracker = view.findViewById(R.id.home_tracker_button);
 //    this.btnTracker.setOnClickListener(new View.OnClickListener() {
 //      @Override
@@ -133,7 +132,6 @@ public class HomeFragment extends Fragment {
         RecyclerView.LayoutManager mLayoutManager4 = new LinearLayoutManager(view.getContext());
         RecyclerView.LayoutManager mLayoutManager5 = new LinearLayoutManager(view.getContext());
         RecyclerView.LayoutManager mLayoutManager6 = new LinearLayoutManager(view.getContext());
-
 
         LinearLayoutManager horizontalLayout0
                 = new LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false);
@@ -227,14 +225,15 @@ public class HomeFragment extends Fragment {
     }
 
     private void doHttpRequestSportR() {
-        String url1r = "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1&recommandation=true";
-        StringRequest request = new StringRequest(url1r, new Response.Listener<String>() {
+        String url = "http://www.kbostat.co.kr/resource/infra?parentInfraCategory=1&recommandation=true";
+        StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+//                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -257,7 +256,7 @@ public class HomeFragment extends Fragment {
                 result_orig.addAll(result);
                 sportRAdapter.setHomeModelList_orig(result_orig);
                 sportRRecyclerView.setAdapter(sportRAdapter);
-                Log.i("TEST", response);
+                Log.i("SportR : ", response);
 
             }
 
@@ -279,7 +278,8 @@ public class HomeFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+//                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -325,7 +325,8 @@ public class HomeFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+//                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -371,7 +372,8 @@ public class HomeFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+//                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -427,7 +429,8 @@ public class HomeFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+//                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -484,7 +487,8 @@ public class HomeFragment extends Fragment {
 
                 if (response != null) {
                     try {
-                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+//                        response = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                        response = new String(response.getBytes("UTF-8"), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
