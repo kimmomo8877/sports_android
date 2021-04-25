@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.and02.R;
+import com.facebook.common.util.UriUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.json.JSONObject;
@@ -85,7 +86,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
       Uri uri = Uri.parse(homeModelList.get(position).getAttachFile());
       holder.getDraweeView().setImageURI(uri);
     } else {
-
+      Uri uri = UriUtil.getUriForQualifiedResource("com.example.and02", R.drawable.no_image);
+      holder.getDraweeView().setImageURI(uri);
     }
   }
 

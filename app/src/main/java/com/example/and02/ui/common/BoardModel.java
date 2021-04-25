@@ -19,7 +19,7 @@ public class BoardModel implements Serializable {
     private String registeDate;
     private String modifyDate;
     private String deleteDate;
-    private String deleteYn;
+    private boolean deleteYn;
     private JSONArray attachFiles;
     private String attachFile;
 
@@ -119,11 +119,11 @@ public class BoardModel implements Serializable {
         this.deleteDate = deleteDate;
     }
 
-    public String getDeleteYn() {
+    public boolean getDeleteYn() {
         return deleteYn;
     }
 
-    public void setDeleteYn(String deleteYn) {
+    public void setDeleteYn(boolean deleteYn) {
         this.deleteYn = deleteYn;
     }
 

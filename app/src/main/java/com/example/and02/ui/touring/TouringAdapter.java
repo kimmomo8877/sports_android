@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.and02.R;
 import com.example.and02.ui.home.HomeAdapter;
 import com.example.and02.ui.home.InfraModel;
+import com.facebook.common.util.UriUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
@@ -83,7 +84,8 @@ public class TouringAdapter extends RecyclerView.Adapter<TouringAdapter.TouringV
             Uri uri = Uri.parse(infraModelList.get(position).getAttachFile());
             holder.getDraweeView().setImageURI(uri);
         } else {
-
+            Uri uri = UriUtil.getUriForQualifiedResource("com.example.and02", R.drawable.no_image);
+            holder.getDraweeView().setImageURI(uri);
         }
     }
 

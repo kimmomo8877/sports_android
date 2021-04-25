@@ -16,8 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.and02.R;
 import com.example.and02.ui.home.InfraModel;
+import com.facebook.common.util.UriUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +90,8 @@ public class TeamAdapter  extends RecyclerView.Adapter<TeamAdapter.TeamViewHolde
             Uri uri = Uri.parse(infraModelList.get(position).getAttachFile());
             holder.getDraweeView().setImageURI(uri);
         } else {
-//            holder.getDraweeView().setImage;
+            Uri uri = UriUtil.getUriForQualifiedResource("com.example.and02", R.drawable.no_image);
+            holder.getDraweeView().setImageURI(uri);
         }
     }
 

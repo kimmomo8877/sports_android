@@ -642,7 +642,7 @@ public class TeamFragment extends Fragment {
     }
 
     private void doHttpRequestFacilityDistanceMenu() {
-        String url1r = "http://www.kbostat.co.kr/resource/infra-category/16";
+        String url1r = "http://www.kbostat.co.kr/resource/infra-category/2";
         StringRequest request = new StringRequest(url1r, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
