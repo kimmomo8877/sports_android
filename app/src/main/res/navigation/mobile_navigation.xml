@@ -8,7 +8,7 @@
 
     <fragment
             android:id="@+id/navigation_home"
-            android:name="com.example.and02.ui.home.HomeFragment"
+            android:name="com.hiball.gssc.ui.home.HomeFragment"
             android:label="홈"
             tools:layout="@layout/fragment_home">
         <action
@@ -16,12 +16,12 @@
             app:destination="@id/facilityDetailFragment" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_tracker_main"
-            app:destination="@id/navigation_tracker_main" />
+            app:destination="@id/navigation_tracker_config" />
 
     </fragment>
     <fragment
         android:id="@+id/facilityDetailFragment"
-        android:name="com.example.and02.ui.team.FacilityDetailFragment"
+        android:name="com.hiball.gssc.ui.team.FacilityDetailFragment"
         android:label="FacilityDetailFragment" >
         <action
             android:id="@+id/action_facilityDetailFragment_to_reservationFragment"
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.example.and02.ui.dashboard.DashboardFragment"
+        android:name="com.hiball.gssc.ui.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action android:id="@+id/action_dashboardFragment_to_navigation_sport_reservation"
@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/navigation_team"
-        android:name="com.example.and02.ui.team.TeamFragment"
+        android:name="com.hiball.gssc.ui.team.TeamFragment"
         android:label="fragment_team"
         tools:layout="@layout/fragment_team" >
         <action
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_touring"
-        android:name="com.example.and02.ui.touring.TouringFragment"
+        android:name="com.hiball.gssc.ui.touring.TouringFragment"
         android:label="fragment_touring"
         tools:layout="@layout/fragment_touring" >
         <action
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.and02.ui.team.SearchFragment"
+        android:name="com.hiball.gssc.ui.team.SearchFragment"
         android:label="SearchFragment" >
         <action
             android:id="@+id/action_searchFragment_to_searchResultFragment"
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchResultFragment"
-        android:name="com.example.and02.ui.team.SearchResultFragment"
+        android:name="com.hiball.gssc.ui.team.SearchResultFragment"
         android:label="SearchResultFragment" >
         <action
             android:id="@+id/action_searchResultFragment_to_facilityMapFragment"
@@ -81,7 +81,7 @@
     </fragment>
     <fragment
         android:id="@+id/facilityMapFragment"
-        android:name="com.example.and02.ui.team.FacilityMapFragment"
+        android:name="com.hiball.gssc.ui.team.FacilityMapFragment"
         android:label="FacilityMapFragment" >
         <action
             android:id="@+id/action_facilityMapFragment_to_facilityDetailFragment"
@@ -92,13 +92,13 @@
     </fragment>
 
     <fragment android:id="@+id/navigation_tracker_config"
-              android:name="com.example.and02.ui.tracker.TrackerConfigFragment" android:label="트래커 사용설정"
+              android:name="com.hiball.gssc.ui.tracker.TrackerConfigFragment" android:label="트래커 사용설정"
               tools:layout="@layout/fragment_tracker_config">
         <action android:id="@+id/action_tracker_config_to_tracker_main" app:destination="@id/navigation_tracker_main"
                 app:enterAnim="@anim/nav_default_enter_anim"/>
     </fragment>
 
-    <fragment android:id="@+id/navigation_tracker_main" android:name="com.example.and02.ui.tracker.TrackerMainFragment"
+    <fragment android:id="@+id/navigation_tracker_main" android:name="com.hiball.gssc.ui.tracker.TrackerMainFragment"
               android:label="트래커 메인"
               tools:layout="@layout/fragment_tracker_main">
         <action android:id="@+id/action_tracker_main_to_tracker_detail" app:destination="@id/navigation_tracker_detail"
@@ -107,21 +107,21 @@
     </fragment>
 
     <fragment android:id="@+id/navigation_tracker_detail"
-              android:name="com.example.and02.ui.tracker.TrackerDetailFragment"
+              android:name="com.hiball.gssc.ui.tracker.TrackerDetailFragment"
               android:label="트래커"
               tools:layout="@layout/fragment_tracker_detail"/>
 
     <fragment android:id="@+id/navigation_my_page"
-              android:name="com.example.and02.ui.my.MyPageFragment"
+              android:name="com.hiball.gssc.ui.my.MyPageFragment"
               android:label="마이페이지"
               tools:layout="@layout/fragment_my_page"/>
     <fragment
         android:id="@+id/reservationFragment"
-        android:name="com.example.and02.ui.team.ReservationFragment"
+        android:name="com.hiball.gssc.ui.team.ReservationFragment"
         android:label="ReservationFragment" />
     <fragment
         android:id="@+id/teamDetailFragment"
-        android:name="com.example.and02.ui.team.TeamDetailFragment"
+        android:name="com.hiball.gssc.ui.team.TeamDetailFragment"
         android:label="TeamDetailFragment" >
         <action
             android:id="@+id/action_teamDetailFragment_to_teamScheduleFragment"
@@ -138,36 +138,36 @@
     </fragment>
     <fragment
         android:id="@+id/teamScheduleFragment"
-        android:name="com.example.and02.ui.team.TeamScheduleFragment"
+        android:name="com.hiball.gssc.ui.team.TeamScheduleFragment"
         android:label="TeamScheduleFragment" />
     <fragment
         android:id="@+id/teamNoticeFragment"
-        android:name="com.example.and02.ui.team.TeamNoticeFragment"
+        android:name="com.hiball.gssc.ui.team.TeamNoticeFragment"
         android:label="TeamNoticeFragment" />
     <fragment
         android:id="@+id/teamReservationFragment"
-        android:name="com.example.and02.ui.team.TeamReservationFragment"
+        android:name="com.hiball.gssc.ui.team.TeamReservationFragment"
         android:label="TeamReservationFragment" />
     <fragment
         android:id="@+id/teamStoryFragment"
-        android:name="com.example.and02.ui.team.TeamStoryFragment"
+        android:name="com.hiball.gssc.ui.team.TeamStoryFragment"
         android:label="TeamStoryFragment" />
 
     <fragment
             android:id="@+id/navigation_sport"
-            android:name="com.example.and02.ui.sport.SportFragment"
+            android:name="com.hiball.gssc.ui.sport.SportFragment"
             android:label="스포츠재활"
             tools:layout="@layout/fragment_sport" />
 
     <fragment
             android:id="@+id/navigation_sport_detail"
-            android:name="com.example.and02.ui.sport.SportDetailFragment"
+            android:name="com.hiball.gssc.ui.sport.SportDetailFragment"
             android:label="스포츠재활 상세"
             tools:layout="@layout/fragment_sport_detail" />
 
     <fragment
             android:id="@+id/navigation_sport_reservation"
-            android:name="com.example.and02.ui.sport.SportReservationFragment"
+            android:name="com.hiball.gssc.ui.sport.SportReservationFragment"
             android:label="예약하기"
             tools:layout="@layout/fragment_sport_reservation" />
 

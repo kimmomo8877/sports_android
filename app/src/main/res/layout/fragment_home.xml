@@ -11,7 +11,7 @@
     android:fillViewport="true"
     android:scrollbars="none"
 
-    tools:context=".MainActivity">
+    tools:context="com.hiball.gssc.MainActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

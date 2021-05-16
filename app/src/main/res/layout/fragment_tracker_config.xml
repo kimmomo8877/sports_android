@@ -6,7 +6,7 @@
         android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:weightSum="10"
-        tools:context=".ui.tracker.TrackerConfigFragment">
+        tools:context="com.hiball.gssc.ui.tracker.TrackerConfigFragment">
 
     <TextView
             android:text="트래커 사용에 필요한 정보를 입력해주세요."
@@ -119,29 +119,29 @@
                     android:text=""/>
         </LinearLayout>
 
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:weightSum="4"
-                android:layout_marginVertical="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="0dp">
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="center_horizontal"
-                    android:textSize="15sp"
-                    android:text="센터"/>
-            <Spinner
-                    android:id="@+id/spinner_trackerConfig_center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:layout_weight="1"
-                    android:text=""/>
-        </LinearLayout>
+<!--        <LinearLayout-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_weight="1"-->
+<!--                android:gravity="center"-->
+<!--                android:weightSum="4"-->
+<!--                android:layout_marginVertical="10dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp">-->
+<!--            <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="3"-->
+<!--                    android:gravity="center_horizontal"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:text="센터"/>-->
+<!--            <Spinner-->
+<!--                    android:id="@+id/spinner_trackerConfig_center"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:inputType="number"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text=""/>-->
+<!--        </LinearLayout>-->
     </LinearLayout>
     <TextView android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
 
